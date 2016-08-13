@@ -10,7 +10,6 @@ namespace JPopadak.CoreMatchers.Descriptions
     public class Description : IDescription
     {
         private StringBuilder builder = new StringBuilder();
-        private char lastChar = ' ';
 
         public IDescription AppendText(string text)
         {
