@@ -17,12 +17,12 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public override void Describe(IDescription description)
         {
-            throw new NotImplementedException();
+            description.AppendValue(_expectedValue);
         }
 
         public override bool Matches(T actual)
         {
-            throw new NotImplementedException();
+            return areEqual(actual, _expectedValue);
         }
 
         private static bool areEqual(T actual, T expected)

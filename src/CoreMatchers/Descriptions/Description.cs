@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JPopadak.CoreMatchers.Matchers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace JPopadak.CoreMatchers.Descriptions
         {
             appendString(text);
             return this;
+        }
+
+        public IDescription AppendList(string before, string separator, string after, params IDescribable[] args)
+        {
+            return appendList(before, separator, after, args);
         }
 
         public IDescription AppendValue<T>(T value)
@@ -39,6 +45,26 @@ namespace JPopadak.CoreMatchers.Descriptions
         public override string ToString()
         {
             return builder.ToString();
+        }
+
+        private IDescription appendList(String start, String separator, String end, params IDescribable[] describables)
+        {
+            bool separate = false;
+
+            appendString(start);
+            foreach (IDescribable describable in describables)
+            {
+                if (separate)
+                {
+                    appendString(separator);
+                }
+                AppendDescribable(describable);
+
+                separate = true;
+            }
+
+            appendString(end);
+            return this;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public virtual void DescribeMismatch(T actual, IDescription description)
         {
-            description.AppendText("was").AppendValue(actual);
+            description.AppendText("was ").AppendValue(actual);
         }
     }
 }

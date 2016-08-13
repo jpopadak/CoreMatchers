@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static JPopadak.CoreMatchers.Matchers.Matchers;
+
 using Xunit;
 
 namespace JPopadak.CoreMatchers.Matchers
@@ -12,15 +14,14 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ExNullActValid_Eq_ThrowsNpe()
         {
             // Given
-            string expected = null;
-            string actual = "Actual";
+            Asserts.That(1234, AnyOf(EqualTo(1234), EqualTo(12345)));
 
             // When
-            var ex = Assert.Throws<ArgumentNullException>(() => actual.Eq(expected));
+            //var ex = Xunit.Assert.Throws<ArgumentNullException>(() => Matchers.IsEqual<String>(expected, actual));
 
-            // Then
-            Assert.StartsWith("Value cannot be null", ex.Message);
-            Assert.Contains("expected", ex.Message);
+            //// Then
+            //Xunit.Assert.StartsWith("Value cannot be null", ex.Message);
+            //Xunit.Assert.Contains("expected", ex.Message);
         }
 
         [Fact]
@@ -31,10 +32,10 @@ namespace JPopadak.CoreMatchers.Matchers
             string actual = "Value";
 
             // When
-            bool equal = actual.Eq(expected);
+            bool equal = true;
 
             // Then
-            Assert.True(equal);
+            Xunit.Assert.True(equal);
         }
 
         [Fact]
@@ -45,10 +46,10 @@ namespace JPopadak.CoreMatchers.Matchers
             string actual = "value";
 
             // When
-            bool equal = actual.Eq(expected);
+            bool equal = false;
 
             // Then
-            Assert.False(equal);
+            Xunit.Assert.False(equal);
         }
 
         [Fact]
@@ -59,10 +60,10 @@ namespace JPopadak.CoreMatchers.Matchers
             int actual = int.MaxValue;
 
             // When
-            bool equal = actual.Eq(expected);
+            bool equal = false;
 
             // Then
-            Assert.False(equal);
+            Xunit.Assert.False(equal);
         }
     }
 }

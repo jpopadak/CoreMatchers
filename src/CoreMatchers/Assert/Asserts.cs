@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JPopadak.CoreMatchers.Asserts
+namespace JPopadak.CoreMatchers
 {
-    public static class Assert
+    public static class Asserts
     {
-        static void That<T>(T actual, Matcher<T> matcher)
+        public static void That<T>(T actual, Matcher<T> matcher)
         {
             That(string.Empty, actual, matcher);
         }
         
-        static void That<T>(string message, T actual, Matcher<T> matcher)
+        public static void That<T>(string message, T actual, Matcher<T> matcher)
         {
             if (!matcher.Matches(actual))
             {
