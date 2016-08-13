@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsEnumerableContaining<T> : Matcher<IEnumerable<T>>
+    public class IsEnumerableContaining<T> : TypeSafeDiagnosingMatcher<IEnumerable<T>>
     {
         private readonly Matcher<T> _matcher;
 
@@ -21,28 +21,28 @@ namespace JPopadak.CoreMatchers.Matchers
                 .AppendDescribable(_matcher);
         }
 
-        public override bool Matches(IEnumerable<T> actual)
+        private bool isEmpty(IEnumerable<T> enumerable)
         {
-            if (isEmpty(actual))
-            {
-                return false;
-            }
-
-            return doesOneMatch(actual);
+            IEnumerator<T> enumerator = enumerable.GetEnumerator();
+            return (!enumerator.MoveNext());
         }
 
-        public override void DescribeMismatch(IEnumerable<T> actual, IDescription description)
+        private bool doesOneMatch(IEnumerable<T> enumerable)
+        {
+            return enumerable.Any(_ => _matcher.Matches(_));
+        }
+
+        protected override bool MatchesSafely(IEnumerable<T> actual, IDescription description)
         {
             if (isEmpty(actual))
             {
                 description.AppendText("was empty");
-                return;
+                return false;
             }
 
             if (doesOneMatch(actual))
             {
-                // Successful case
-                return;
+                return true;
             }
 
             description.AppendText("mismatches were: [");
@@ -60,17 +60,7 @@ namespace JPopadak.CoreMatchers.Matchers
             }
 
             description.AppendText("]");
-        }
-
-        private bool isEmpty(IEnumerable<T> enumerable)
-        {
-            IEnumerator<T> enumerator = enumerable.GetEnumerator();
-            return (!enumerator.MoveNext());
-        }
-
-        private bool doesOneMatch(IEnumerable<T> enumerable)
-        {
-            return enumerable.Any(_matcher.Matches);
+            return false;
         }
     }
 }

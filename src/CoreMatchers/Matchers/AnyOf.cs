@@ -14,12 +14,18 @@ namespace JPopadak.CoreMatchers.Matchers
             // Do Nothing
         }
 
+        public AnyOf(IEnumerable<Matcher<T>> matchers)
+            : this(matchers.ToArray())
+        {
+            // Do Nothing
+        }
+
         public override void Describe(IDescription description)
         {
             describeTo(description, "or");
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return matches(actual, shortcut: true);
         }

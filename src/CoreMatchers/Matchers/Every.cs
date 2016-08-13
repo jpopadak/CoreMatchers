@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class Every<T> : Matcher<IEnumerable<T>>
+    public class Every<T> : TypeSafeDiagnosingMatcher<IEnumerable<T>>
     {
         private readonly Matcher<T> _matcher;
 
@@ -20,18 +20,16 @@ namespace JPopadak.CoreMatchers.Matchers
             description.AppendText("every item is ").AppendDescribable(_matcher);
         }
 
-        public override bool Matches(IEnumerable<T> actual)
+        protected override bool MatchesSafely(IEnumerable<T> actual, IDescription description)
         {
-            return actual.All(_matcher.Matches);
-        }
-
-        public override void DescribeMismatch(IEnumerable<T> actual, IDescription description)
-        {
-            // Will never be empty
-            T invalid = actual.First(value => !_matcher.Matches(value));
-
-            description.AppendText("an item ");
-            _matcher.DescribeMismatch(invalid, description);
+            T invalid = actual.FirstOrDefault(value => !_matcher.Matches(value));
+            if (invalid != null)
+            {
+                description.AppendText("an item ");
+                _matcher.DescribeMismatch(invalid, description);
+                return false;
+            }
+            return true;
         }
     }
 }

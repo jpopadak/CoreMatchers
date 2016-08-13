@@ -10,9 +10,9 @@ namespace JPopadak.CoreMatchers.Matchers
     {
         public abstract void Describe(IDescription description);
 
-        public abstract bool Matches(T actual);
+        public abstract bool Matches(object actual);
 
-        public virtual void DescribeMismatch(T actual, IDescription description)
+        public virtual void DescribeMismatch(object actual, IDescription description)
         {
             description.AppendText("was ").AppendValue(actual);
         }

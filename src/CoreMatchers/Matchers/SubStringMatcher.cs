@@ -7,7 +7,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class SubStringMatcher : Matcher<string>
+    public abstract class SubStringMatcher : TypeSafeMatcher<string>
     {
         private readonly string _relationship;
         private readonly bool _ignoringCase;
@@ -22,12 +22,12 @@ namespace JPopadak.CoreMatchers.Matchers
             Contract.NotNull(_substring);
         }
 
-        public override bool Matches(string actual)
+        protected override bool MatchesSafely(string actual)
         {
             return evalSubstringOf(_ignoringCase ? actual.ToLowerInvariant() : actual);
         }
 
-        public override void DescribeMismatch(string actual, IDescription description)
+        protected override void DescribeMismatchSafely(string actual, IDescription description)
         {
             description.AppendText("was \"").AppendText(actual).AppendText("\"");
         }

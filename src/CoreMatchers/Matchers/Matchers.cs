@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
+    /// <summary>
+    /// A static class of Matchers to use with Assert.That()
+    /// </summary>
     public static class Matchers
     {
         /// <summary>
@@ -20,7 +23,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<T> AllOf<T>(IEnumerable<Matcher<T>> matchers)
         {
-            return new AllOf<T>(matchers.ToArray<Matcher<T>>());
+            return new AllOf<T>(matchers);
         }
 
         /// <summary>
@@ -36,7 +39,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<T> AnyOf<T>(IEnumerable<Matcher<T>> matchers)
         {
-            return new AnyOf<T>(matchers.ToArray<Matcher<T>>());
+            return new AnyOf<T>(matchers);
         }
 
         /// <summary>
@@ -90,7 +93,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<T> Is<T>(T value)
         {
-            return Is(EqualTo(value));
+            return new Is<T>(new IsEqual<T>(value));
         }
 
         /// <summary>
@@ -129,7 +132,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<IEnumerable<T>> IsEnumerableContaining<T>(T item)
         {
-            return IsEnumerableContaining(EqualTo(item));
+            return new IsEnumerableContaining<T>(new IsEqual<T>(item));
         }
 
         /// <summary>
@@ -140,7 +143,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<IEnumerable<T>> HasItem<T>(Matcher<T> matcher)
         {
-            return IsEnumerableContaining(matcher);
+            return new IsEnumerableContaining<T>(matcher);
         }
 
         /// <summary>
@@ -151,7 +154,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public static Matcher<IEnumerable<T>> HasItem<T>(T item)
         {
-            return HasItem(EqualTo(item));
+            return new IsEnumerableContaining<T>(new IsEqual<T>(item));
         }
 
         /// <summary>
@@ -169,7 +172,7 @@ namespace JPopadak.CoreMatchers.Matchers
                 all.Add(new IsEnumerableContaining<T>(elementMatcher));
             }
 
-            return AllOf(all);
+            return new AllOf<IEnumerable<T>>(all);
         }
 
         /// <summary>
@@ -184,10 +187,10 @@ namespace JPopadak.CoreMatchers.Matchers
 
             foreach (T element in values)
             {
-                all.Add(HasItem<T>(element));
+                all.Add(new IsEnumerableContaining<T>(new IsEqual<T>(element)));
             }
 
-            return AllOf(all);
+            return new AllOf<IEnumerable<T>>(all);
         }
 
         /// <summary>
@@ -210,12 +213,144 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         /// <summary>
-        /// Creates an {@link org.hamcrest.core.IsEqual} matcher that does not enforce the values being
+        /// Creates a IsEqual matcher that does not enforce the values being
         /// compared to be of the same static type.
         /// </summary>
         public static Matcher<object> EqualToObject(object value)
         {
             return new IsEqual<object>(value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is an instance of the specified <code>type</code>,
+        /// as determined by calling 'is' operator on that type, passing the
+        /// the examined object.
+        /// </summary>
+        public static Matcher<T> Any<T>(Type type)
+        {
+            return new IsA<T>(type);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is an instance of the specified <code>type</code>,
+        /// as determined by calling 'is' operator on that type, passing the
+        /// the examined object.
+        /// </summary>
+        public static Matcher<T> IsA<T>(Type type)
+        {
+            return new IsA<T>(type);
+        }
+
+        /// <summary>
+        /// Creates a matcher that wraps an existing matcher, but inverts the logic by which
+        /// it will match.
+        /// </summary>
+        public static Matcher<T> Not<T>(Matcher<T> matcher)
+        {
+            return new IsNot<T>(matcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher that wraps an existing matcher, but inverts the logic by which
+        /// it will match to EqualTo()
+        /// </summary>
+        public static Matcher<T> Not<T>(T item)
+        {
+            return new IsNot<T>(new IsEqual<T>(item));
+        }
+
+        /// <summary>
+        /// A shortcut to the frequently used <code>not(nullValue())</code>.
+        /// </summary>
+        public static Matcher<object> NotNullValue()
+        {
+            return new IsNot<object>(new IsNull<object>());
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if examined object is <code>null</code>.
+        /// </summary>
+        public static Matcher<object> IsNull()
+        {
+            return new IsNull<object>();
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if examined object is <code>null</code>.
+        /// </summary>
+        public static Matcher<object> NullValue()
+        {
+            return new IsNull<object>();
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches only when the examined object is the same instance as
+        /// the specified target object.
+        /// </summary>
+        public static Matcher<T> IsSameInstance<T>(T value)
+        {
+            return new IsSame<T>(value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches only when the examined object is the same instance as
+        /// the specified target object.
+        /// </summary>
+        public static Matcher<T> TheInstance<T>(T value)
+        {
+            return new IsSame<T>(value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String contains the specified
+        /// string anywhere.
+        /// </summary>
+        public static Matcher<string> Contains(string value)
+        {
+            return new StringContains(false, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String contains the specified
+        /// string anywhere, ignoring case (invariant).
+        /// </summary>
+        public static Matcher<string> ContainsIgnoringCase(string value)
+        {
+            return new StringContains(true, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String starts with the specified string.
+        /// </summary>
+        public static Matcher<string> StartsWith(string value)
+        {
+            return new StringStartsWith(false, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String starts with the specified string,
+        /// ignoring case (invariant).
+        /// </summary>
+        public static Matcher<string> StartsWithIgnoringCase(string value)
+        {
+            return new StringStartsWith(true, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String ends with the specified string.
+        /// </summary>
+        public static Matcher<string> EndsWith(string value)
+        {
+            return new StringEndsWith(false, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String ends with the specified string,
+        /// ignoring case (invariant).
+        /// </summary>
+        public static Matcher<string> EndsWithIgnoringCase(string value)
+        {
+            return new StringEndsWith(true, value);
         }
     }
 }

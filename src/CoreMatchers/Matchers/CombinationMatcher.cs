@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class CombinationMatcher<T> : Matcher<T>
+    public class CombinationMatcher<T> : TypeSafeDiagnosingMatcher<T>
     {
         private readonly Matcher<T> _matcher;
 
@@ -15,19 +15,19 @@ namespace JPopadak.CoreMatchers.Matchers
             _matcher = matcher;
         }
 
-        public override bool Matches(T actual)
-        {
-            return _matcher.Matches(actual);
-        }
-
         public override void Describe(IDescription description)
         {
             description.AppendDescribable(_matcher);
         }
 
-        public override void DescribeMismatch(T actual, IDescription description)
+        protected override bool MatchesSafely(T item, IDescription mismatchDescription)
         {
-            _matcher.DescribeMismatch(actual, description);
+            if (!_matcher.Matches(item))
+            {
+                _matcher.DescribeMismatch(item, mismatchDescription);
+                return false;
+            }
+            return true;
         }
 
         public CombinationMatcher<T> And(Matcher<T> other)

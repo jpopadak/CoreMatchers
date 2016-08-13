@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class StringRegularExpression : Matcher<string>
+    public class StringRegularExpression : TypeSafeDiagnosingMatcher<string>
     {
         private readonly Regex _regex;
 
@@ -21,9 +21,15 @@ namespace JPopadak.CoreMatchers.Matchers
             description.AppendText("a string matching the pattern ").AppendValue(_regex.ToString());
         }
 
-        public override bool Matches(string actual)
+        protected override bool MatchesSafely(string item, IDescription mismatchDescription)
         {
-            return _regex.IsMatch(actual);
+            if (!_regex.IsMatch(item))
+            {
+                mismatchDescription.AppendText("the string was ")
+                    .AppendValue(item);
+                return false;
+            }
+            return true;
         }
     }
 }

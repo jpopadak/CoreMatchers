@@ -23,7 +23,7 @@ namespace JPopadak.CoreMatchers.Matchers
             Array.Copy(values, _args, values.Length);
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return _matcher.Matches(actual);
         }
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
             }
         }
 
-        public override void DescribeMismatch(T actual, IDescription description)
+        public override void DescribeMismatch(object actual, IDescription description)
         {
             _matcher.DescribeMismatch(actual, description);
         }

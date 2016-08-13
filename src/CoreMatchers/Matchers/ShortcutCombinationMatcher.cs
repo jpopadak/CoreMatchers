@@ -15,7 +15,7 @@ namespace JPopadak.CoreMatchers.Matchers
             _matchers = matchers;
         }
 
-        protected bool matches(T value, bool shortcut)
+        protected bool matches(object value, bool shortcut)
         {
             foreach (Matcher<T> matcher in _matchers)
             {

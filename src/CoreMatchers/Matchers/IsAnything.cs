@@ -21,7 +21,7 @@ namespace JPopadak.CoreMatchers.Matchers
             _message = message;
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return true;
         }

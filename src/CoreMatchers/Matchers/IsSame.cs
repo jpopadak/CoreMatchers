@@ -15,9 +15,9 @@ namespace JPopadak.CoreMatchers.Matchers
             _value = value;
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
-            return Object.ReferenceEquals(actual, _value);
+            return object.ReferenceEquals(actual, _value);
         }
 
         public override void Describe(IDescription description)

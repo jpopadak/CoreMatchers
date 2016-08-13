@@ -6,13 +6,13 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsA<T> : Matcher<T>
+    public class IsA<T> : DiagnosingMatcher<T>
     {
         private readonly Type _type;
 
-        public IsA()
+        public IsA(Type type)
         {
-            _type = typeof(T);
+            _type = type;
         }
 
         public override void Describe(IDescription description)
@@ -20,14 +20,21 @@ namespace JPopadak.CoreMatchers.Matchers
             description.AppendText("an instance of ").AppendText(_type.Name);
         }
 
-        public override bool Matches(T actual)
+        protected override bool Matches(object actual, IDescription mismatchDescription)
         {
             if (actual == null)
             {
+                mismatchDescription.AppendText("null");
                 return false;
             }
 
-            return _type.Equals(actual);
+            if (!(actual is T))
+            {
+                Type actualType = actual.GetType();
+                mismatchDescription.AppendText("an instance of ").AppendText(actualType.Name);
+                return false;
+            }
+            return true;
         }
     }
 }

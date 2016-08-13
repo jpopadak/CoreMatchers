@@ -20,12 +20,12 @@ namespace JPopadak.CoreMatchers.Matchers
             description.AppendValue(_expectedValue);
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return areEqual(actual, _expectedValue);
         }
 
-        private static bool areEqual(T actual, T expected)
+        private bool areEqual(object actual, object expected)
         {
             if (actual == null)
             {
@@ -34,13 +34,15 @@ namespace JPopadak.CoreMatchers.Matchers
 
             if (expected != null && isArray())
             {
-                throw new NotImplementedException("Array compatibility is not completed.");
+                object[] expectedArray = (object[])expected;
+                object[] actualArray = (object[])actual;
+                return Enumerable.SequenceEqual(actualArray, expectedArray);
             }
             
             return actual.Equals(expected);
         }
 
-        private static bool isArray()
+        private bool isArray()
         {
             return typeof(T).IsArray;
         }

@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class AllOf<T> : Matcher<T>
+    public class AllOf<T> : DiagnosingMatcher<T>
     {
         private readonly Matcher<T>[] _matchers;
 
@@ -15,17 +15,18 @@ namespace JPopadak.CoreMatchers.Matchers
             _matchers = matchers;
         }
 
+        public AllOf(IEnumerable<Matcher<T>> matchers)
+            : this(matchers.ToArray())
+        {
+            // Do Nothing
+        }
+
         public override void Describe(IDescription description)
         {
             description.AppendList("(", " " + "and" + " ", ")", _matchers);
         }
 
-        public override bool Matches(T actual)
-        {
-            return _matchers.All(_ => _.Matches(actual));
-        }
-
-        public override void DescribeMismatch(T actual, IDescription description)
+        protected override bool Matches(object actual, IDescription description)
         {
             foreach (Matcher<T> matcher in _matchers)
             {
@@ -33,8 +34,10 @@ namespace JPopadak.CoreMatchers.Matchers
                 {
                     description.AppendDescribable(matcher).AppendText(" ");
                     matcher.DescribeMismatch(actual, description);
+                    return false;
                 }
             }
+            return true;
         }
     }
 }

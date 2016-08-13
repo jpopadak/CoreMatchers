@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public interface IMatcher<T> : IDescribable
+    public interface IMatcher<in T> : IDescribable
     {
-        bool Matches(T actual);
+        bool Matches(object actual);
 
-        void DescribeMismatch(T actual, IDescription description);
+        void DescribeMismatch(object actual, IDescription description);
     }
 }

@@ -8,7 +8,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class IsNull<T> : Matcher<T>
     {
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return actual == null;
         }

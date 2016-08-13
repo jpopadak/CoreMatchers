@@ -15,7 +15,7 @@ namespace JPopadak.CoreMatchers.Matchers
             _matcher = matcher;
         }
 
-        public override bool Matches(T actual)
+        public override bool Matches(object actual)
         {
             return !(_matcher.Matches(actual));
         }
