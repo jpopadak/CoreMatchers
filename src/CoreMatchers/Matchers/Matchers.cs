@@ -268,6 +268,22 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher that matches if an object is not null.
+        /// </summary>
+        public static Matcher<T> IsNotNull<T>()
+        {
+            return new IsNot<T>(new IsNull<T>());
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if examined object is <code>null</code>.
+        /// </summary>
+        public static Matcher<T> IsNull<T>()
+        {
+            return new IsNull<T>();
+        }
+
+        /// <summary>
         /// Creates a matcher that matches if examined object is <code>null</code>.
         /// </summary>
         public static Matcher<object> IsNull()

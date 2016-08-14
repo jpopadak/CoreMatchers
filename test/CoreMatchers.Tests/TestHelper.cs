@@ -23,7 +23,7 @@ namespace JPopadak.CoreMatchers
             }
         }
         
-        public static void AssertDoesNotMatch<T>(Matcher<T> c, T arg)
+        public static void AssertDoesNotMatch<T>(Matcher<T> c, object arg)
         {
             AssertDoesNotMatch("Unexpected match", c, arg);
         }
