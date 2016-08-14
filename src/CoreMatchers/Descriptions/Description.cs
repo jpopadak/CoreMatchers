@@ -24,9 +24,16 @@ namespace JPopadak.CoreMatchers.Descriptions
 
         public IDescription AppendValue<T>(T value)
         {
-            builder.Append("\"");
-            builder.Append(value);
-            builder.Append("\"");
+            if (value == null)
+            {
+                AppendText("null");
+            }
+            else
+            {
+                AppendText("\"");
+                AppendText(value.ToString());
+                AppendText("\"");
+            }
             return this;
         }
  

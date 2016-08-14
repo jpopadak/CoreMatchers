@@ -16,5 +16,12 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             description.AppendText("was ").AppendValue(actual);
         }
+
+        public override string ToString()
+        {
+            Description description = new Description();
+            description.AppendDescribable(this);
+            return description.ToString();
+        }
     }
 }

@@ -28,5 +28,10 @@ namespace JPopadak.CoreMatchers
                 throw new ArgumentException(description.ToString());
             }
         }
+
+        public static void That(string message, bool validation)
+        {
+            That(message, validation, Matchers.Matchers.EqualTo(true));
+        }
     }
 }
