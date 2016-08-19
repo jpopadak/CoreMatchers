@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Package</id>
+    <version>1.0.0</version>
+    <authors>Jim Popadak</authors>
+    <owners>Jim Popadak</owners>
+    <projectUrl>http://github.com/jpopadak/CoreMatchers</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An implementation of assertion matchers for testing. Similar to Mockito for Java</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>Hamcrest Matcher .NET Core</tags>
+  </metadata>
+</package>

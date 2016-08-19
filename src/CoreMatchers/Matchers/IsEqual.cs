@@ -34,9 +34,12 @@ namespace JPopadak.CoreMatchers.Matchers
 
             if (expected != null && isArray())
             {
-                object[] expectedArray = (object[])expected;
-                object[] actualArray = (object[])actual;
-                return Enumerable.SequenceEqual(actualArray, expectedArray);
+                //dynamic expectedArray = expected;
+                //dynamic actualArray = actual;
+                //return Enumerable.SequenceEqual(actualArray, expectedArray);
+
+                // https://github.com/dotnet/roslyn/issues/12045
+                throw new NotImplementedException("Cannot implement dynamic types until issue is solved.");
             }
             
             return actual.Equals(expected);
