@@ -23,6 +23,19 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
+        public void UnknownType_IsA_IsUnknownTypeSafe()
+        {
+            // Given
+            Type actual = typeof(int);
+            Matcher<Type> matcher = IsA<Type>(actual);
+
+            // When
+            TestHelper.AssertUnknownTypeSafe(matcher);
+
+            // Then - No Exception
+        }
+
+        [Fact]
         public void Int_IsA_ReturnsTrue()
         {
             // Given
