@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using JPopadak.CoreMatchers.Descriptions;
+using JPopadak.CoreMatchers.Contracts;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
@@ -12,6 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public IsA(Type type)
         {
+            Contract.NotNull(type);
             _type = type;
         }
 
@@ -27,11 +30,11 @@ namespace JPopadak.CoreMatchers.Matchers
                 mismatchDescription.AppendText("null");
                 return false;
             }
-
-            if (!(actual is T))
+            
+            if (!(_type.IsInstanceOfType(actual)))
             {
                 Type actualType = actual.GetType();
-                mismatchDescription.AppendText("an instance of ").AppendText(actualType.Name);
+                mismatchDescription.AppendValue(actual).AppendText(" is an instance of ").AppendText(actualType.FullName);
                 return false;
             }
             return true;

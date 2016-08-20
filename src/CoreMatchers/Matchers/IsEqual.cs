@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JPopadak.CoreMatchers.Descriptions;
+using System.Collections;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
@@ -34,15 +35,64 @@ namespace JPopadak.CoreMatchers.Matchers
 
             if (expected != null && isArray())
             {
-                //dynamic expectedArray = expected;
-                //dynamic actualArray = actual;
-                //return Enumerable.SequenceEqual(actualArray, expectedArray);
-
-                // https://github.com/dotnet/roslyn/issues/12045
-                throw new NotImplementedException("Cannot implement dynamic types until issue is solved.");
+                Array expectedArray = (Array)expected;
+                Array actualArray = (Array)actual;
+                return checkArraysEqual(actualArray, expectedArray);
             }
-            
+
             return actual.Equals(expected);
+        }
+
+        private static bool checkArraysEqual(Array actual, Array expected)
+        {
+            // Use GetEnumerator() so it can do the work of iterating
+            // over the ranks and lengths of a mutli-dim array
+            IEnumerator expectedEnumerator = expected.GetEnumerator();
+            IEnumerator actualEnumerator = actual.GetEnumerator();
+
+            while (true)
+            {
+                // Get to the next on in the array
+                bool expectedCheck = expectedEnumerator.MoveNext();
+                bool actualCheck = actualEnumerator.MoveNext();
+                
+                // We hit the end of one collection before the other
+                if (expectedCheck != actualCheck)
+                {
+                    return false;
+                }
+
+                // We already checked if they were different,
+                // so if one hits the end, they both must have 
+                // hit the end of the collection with no mismatches
+                if (!expectedCheck)
+                {
+                    return true;
+                }
+                
+                // Check the values now
+                object expectedValue = expectedEnumerator.Current;
+                object actualValue = actualEnumerator.Current;
+
+                // If one of them but not the other is null
+                if ((expectedValue != null && actualValue == null) ||
+                    (expectedValue == null && actualValue != null))
+                {
+                    return false;
+                }
+
+                // IF they are both null, they are the same!
+                if (expectedValue == null && actualValue == null)
+                {
+                    continue;
+                }
+
+                // Do a normal Equals
+                if (!(expectedValue.Equals(actualValue)))
+                {
+                    return false;
+                }
+            }
         }
 
         private bool isArray()

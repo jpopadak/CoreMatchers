@@ -51,8 +51,8 @@ namespace JPopadak.CoreMatchers.Assert
 
             // Then
             Xunit.Assert.StartsWith(description, ex.Message);
-            Xunit.Assert.Contains("Expected: \"" + true, ex.Message);
-            Xunit.Assert.Contains("But: was \"" + errorValue, ex.Message);
+            Xunit.Assert.Contains("Expected: <" + true, ex.Message);
+            Xunit.Assert.Contains("But: was <" + errorValue, ex.Message);
         }
 
         [Fact]

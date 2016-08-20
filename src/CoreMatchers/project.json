@@ -17,7 +17,8 @@
     }
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.0"
+    "NETStandard.Library": "1.6.0",
+    "System.Reflection.TypeExtensions": "4.1.0"
   },
   "description": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java.",
   "frameworks": {
@@ -37,5 +38,5 @@
     "requireLicenseAcceptance": false,
     "tags": [ ".NET", "DNX", "Core", "Matchers", "Test", "Hamcrest" ]
   },
-  "version": "0.0.1-*"
+  "version": "0.0.2-*"
 }

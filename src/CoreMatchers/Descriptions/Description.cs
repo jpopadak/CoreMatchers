@@ -13,7 +13,7 @@ namespace JPopadak.CoreMatchers.Descriptions
 
         public IDescription AppendText(string text)
         {
-            appendString(text);
+            append(text);
             return this;
         }
 
@@ -22,28 +22,61 @@ namespace JPopadak.CoreMatchers.Descriptions
             return appendList(before, separator, after, args);
         }
 
-        public IDescription AppendValue<T>(T value)
+        public IDescription AppendValue(object value)
         {
             if (value == null)
             {
                 AppendText("null");
             }
+            else if (value is string)
+            {
+                escapeValue((string)value);
+            }
+            else if (value is char)
+            {
+                append('"');
+                escapeValue((char)value);
+                append('"');
+            }
+            else if (value is short)
+            {
+                append("<");
+                append(Convert.ToString(value));
+                append("s>");
+            }
+            else if (value is long)
+            {
+                append("<");
+                append(Convert.ToString(value));
+                append("L>");
+            }
+            else if (value is float)
+            {
+                append("<");
+                append(Convert.ToString(value));
+                append("F>");
+            }
             else
             {
-                AppendText("\"");
+                AppendText("<");
                 AppendText(value.ToString());
-                AppendText("\"");
+                AppendText(">");
             }
             return this;
         }
- 
+
         public IDescription AppendDescribable(IDescribable describable)
         {
             describable.Describe(this);
             return this;
         }
 
-        protected void appendString(string value)
+        protected void append(string value)
+        {
+            builder.Append(value);
+        }
+
+        protected void append(char value)
         {
             builder.Append(value);
         }
@@ -57,20 +90,63 @@ namespace JPopadak.CoreMatchers.Descriptions
         {
             bool separate = false;
 
-            appendString(start);
+            append(start);
             foreach (IDescribable describable in describables)
             {
                 if (separate)
                 {
-                    appendString(separator);
+                    append(separator);
                 }
                 AppendDescribable(describable);
 
                 separate = true;
             }
 
-            appendString(end);
+            append(end);
             return this;
+        }
+
+        private void escapeValue(string value)
+        {
+            append('"');
+            forEach(value, escapeValue);
+            append('"');
+        }
+
+        /// <summary>
+        /// Outputs to buffer a escaped version of special chars
+        /// </summary>
+        private void escapeValue(char value)
+        {
+            switch (value)
+            {
+                case '"':
+                    append("\\\"");
+                    break;
+                case '\n':
+                    append("\\n");
+                    break;
+                case '\r':
+                    append("\\r");
+                    break;
+                case '\t':
+                    append("\\t");
+                    break;
+                case '\\':
+                    append("\\\\");
+                    break;
+                default:
+                    append(value);
+                    break;
+            }
+        }
+
+        private void forEach<T>(IEnumerable<T> enumerable, Action<T> function)
+        {
+            foreach (T value in enumerable)
+            {
+                function(value);
+            }
         }
     }
 }

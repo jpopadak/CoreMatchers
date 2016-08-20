@@ -11,7 +11,7 @@ namespace JPopadak.CoreMatchers.Descriptions
 
         IDescription AppendList(string before, string separator, string after, params IDescribable[] args);
 
-        IDescription AppendValue<T>(T value);
+        IDescription AppendValue(object value);
 
         IDescription AppendDescribable(IDescribable describable);
     }

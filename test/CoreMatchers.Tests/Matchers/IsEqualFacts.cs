@@ -8,8 +8,6 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class IsEqualFacts
     {
-        private const string DYNAMIC_TYPE_SKIP = "Cannot test until Issue is resolved: https://github.com/dotnet/roslyn/issues/12045";
-
         [Fact]
         public void NullValue_EqualTo_IsNullSafe()
         {
@@ -174,7 +172,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayExpectedIsSameInstanceOfStringArray_EqualTo_True()
         {
             // Given
@@ -187,7 +185,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayExpectedIsStringArray_EqualTo_True()
         {
             // Given
@@ -201,7 +199,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayExpectedIsDifferentValuesInStringArray_EqualTo_False()
         {
             // Given
@@ -215,7 +213,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayExpectedIsDifferentLengthForStringArray_EqualTo_False()
         {
             // Given
@@ -229,7 +227,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsNullExpectelIsStringArray_EqualTo_False()
         {
             // Given
@@ -243,7 +241,8 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        //[Fact]
+        [Fact]
         public void ActualIsStringArrayWithNullExpectedIsSameInstanceOfStringArray_EqualTo_True()
         {
             // Given
@@ -256,7 +255,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayWithNullExpectedIsStringArray_EqualTo_True()
         {
             // Given
@@ -270,7 +269,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayWithNullExpectedIsDifferentValuesInStringArray_EqualTo_False()
         {
             // Given
@@ -284,7 +283,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsStringArrayWithNullExpectedIsDifferentLengthForStringArray_EqualTo_False()
         {
             // Given
@@ -298,7 +297,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsNullExpectedIsStringArrayWithNull_EqualTo_False()
         {
             // Given
@@ -312,7 +311,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIntArrayIsExpectedIsNull_EqualTo_False()
         {
             // Given
@@ -326,7 +325,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsIntArrayExpectedIsSameInstanceOfIntArray_EqualTo_True()
         {
             // Given
@@ -339,7 +338,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsIntArrayExpectedIsIntArray_EqualTo_True()
         {
             // Given
@@ -353,7 +352,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsIntArrayExpectedIsDifferentValuesInIntArray_EqualTo_False()
         {
             // Given
@@ -367,7 +366,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsIntArrayExpectedIsDifferentLengthForIntArray_EqualTo_False()
         {
             // Given
@@ -381,13 +380,69 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        [Fact(Skip = DYNAMIC_TYPE_SKIP)]
+        [Fact]
         public void ActualIsNullExpectedIsIntArray_EqualTo_False()
         {
             // Given
             int[] actual = null;
             int[] expected = { 1, 2, 3 };
             Matcher<int[]> matcher = Matchers.EqualTo(expected);
+
+            // When
+            TestHelper.AssertDoesNotMatch(matcher, actual);
+
+            // Then - No Exception
+        }
+        
+        [Fact]
+        public void ActualAndExpectedIs3DimIntArray_EqualTo_True()
+        {
+            // Given
+            int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
+            int?[,,] expected = { { {  1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
+            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+
+            // When
+            TestHelper.AssertMatches(matcher, actual);
+
+            // Then - No Exception
+        }
+
+        [Fact]
+        public void ActualAndExpectedIs3DimIntArrayWithNullAtEndOfExpected_EqualTo_False()
+        {
+            // Given
+            int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
+            int?[,,] expected = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, null } } };
+            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+
+            // When
+            TestHelper.AssertDoesNotMatch(matcher, actual);
+
+            // Then - No Exception
+        }
+
+        [Fact]
+        public void ActualAndExpectedIs3DimIntArrayWithWrongValueAtEndOfExpected_EqualTo_False()
+        {
+            // Given
+            int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
+            int?[,,] expected = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 4 } } };
+            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+
+            // When
+            TestHelper.AssertDoesNotMatch(matcher, actual);
+
+            // Then - No Exception
+        }
+
+        [Fact]
+        public void ActualAndExpectedIs3DimIntArrayWithWrongLengthExpected_EqualTo_False()
+        {
+            // Given
+            int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
+            int?[,,] expected = { { { 1, 2, 3, 4 }, { 1, 2, 3, 4 } }, { { 1, 2, 3, 4 }, { 1, 2, 3, 4 } } };
+            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
