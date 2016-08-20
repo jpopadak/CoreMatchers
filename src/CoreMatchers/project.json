@@ -19,7 +19,7 @@
   "dependencies": {
     "NETStandard.Library": "1.6.0"
   },
-  "description": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java\n\nTo use, start with \"Asserts.That(<value>, <matcher>)\".\n'<value>' = The value returned from the test.\n'<matcher>' = One of the sets of matchers in the 'Matchers' class.\n\n\nExample: using static JPopadak.CoreMatchers.Matchers.Matchers;\n\nint result = callToSomeFunction();\nAssert.That(result, Is(EqualTo(0)));",
+  "description": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java.",
   "frameworks": {
     "netstandard1.6": {
       "imports": "dnxcore50"
