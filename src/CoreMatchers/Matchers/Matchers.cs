@@ -242,6 +242,16 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher that matches when the examined object is an instance of the specified <code>type</code>,
+        /// as determined by calling 'is' operator on that type, passing the
+        /// the examined object.
+        /// </summary>
+        public static Matcher<T> InstanceOf<T>(Type type)
+        {
+            return new IsA<T>(type);
+        }
+
+        /// <summary>
         /// Creates a matcher that wraps an existing matcher, but inverts the logic by which
         /// it will match.
         /// </summary>

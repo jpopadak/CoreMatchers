@@ -29,7 +29,7 @@
   "packOptions": {
     "licenseUrl": "https://api.github.com/licenses/bsd-3-clause",
     "owners": [ "Jim Popadak" ],
-    "releaseNotes": "Initial Implementation\n- EqualTo() with Arrays does not currently work",
+    "releaseNotes": "Finished all xUnit tests",
     "repository": {
       "type": "git",
       "url": "https://github.com/jpopadak/CoreMatchers"

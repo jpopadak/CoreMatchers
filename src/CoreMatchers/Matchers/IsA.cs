@@ -20,7 +20,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public override void Describe(IDescription description)
         {
-            description.AppendText("an instance of ").AppendText(_type.Name);
+            description.AppendText("an instance of ").AppendText(_type.FullName);
         }
 
         protected override bool Matches(object actual, IDescription mismatchDescription)
