@@ -37,5 +37,5 @@
     "requireLicenseAcceptance": false,
     "tags": [ ".NET", "DNX", "Core", "Matchers", "Test", "Hamcrest" ]
   },
-  "version": "0.0.1-alpha*"
+  "version": "0.0.1-*"
 }
