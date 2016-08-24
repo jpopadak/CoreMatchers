@@ -9,7 +9,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class DescribedAs<T> : Matcher<T>
     {
-        private readonly static Regex ARG_PATTERN = new Regex("%([0-9]+)");
+        private readonly static Regex ARG_PATTERN = new Regex("{([0-9]+)}");
         private readonly string _descriptionTemplate;
         private readonly Matcher<T> _matcher;
         private readonly object[] _args;
@@ -36,7 +36,7 @@ namespace JPopadak.CoreMatchers.Matchers
             foreach (Match match in matches)
             {
                 // Add the description
-                string subStr = _descriptionTemplate.Substring(textStart, match.Index);
+                string subStr = _descriptionTemplate.Substring(textStart, match.Index - textStart);
                 description.AppendText(subStr);
 
                 // Add the value of the description

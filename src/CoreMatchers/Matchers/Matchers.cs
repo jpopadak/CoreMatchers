@@ -99,7 +99,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// <summary>
         /// Creates a matcher that always matches, regardless of the examined object, even if null.
         /// </summary>
-        public static Matcher<T> IsAnything<T>()
+        public static Matcher<T> Anything<T>()
         {
             return new IsAnything<T>();
         }
@@ -108,7 +108,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// Creates a matcher that always matches, regardless of the examined object, but describes
         /// itself with the specified description.
         /// </summary>
-        public static Matcher<T> IsAnything<T>(string description)
+        public static Matcher<T> Anything<T>(string description)
         {
             return new IsAnything<T>(description);
         }
