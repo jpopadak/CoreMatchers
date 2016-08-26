@@ -9,7 +9,6 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class StringEndsWithFacts
     {
-
         private const string EXCERPT = "EXCERPT";
         private const string EXCERPT_RANDOM_CASE = "ExCeRpT";
 
