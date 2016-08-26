@@ -212,6 +212,30 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
+        [Fact]
+        public void NullSubString_Contains_ThrowsEx()
+        {
+            // Given
+            string expected = null;
+
+            // When
+            Xunit.Assert.Throws<ArgumentNullException>(() => Contains(expected));
+
+            // Then - Throws verifies throws ArugmentNullException
+        }
+
+        [Fact]
+        public void NullSubString_ContainsIgnoringCase_ThrowsEx()
+        {
+            // Given
+            string expected = null;
+
+            // When
+            Xunit.Assert.Throws<ArgumentNullException>(() => ContainsIgnoringCase(expected));
+
+            // Then - Throws verifies throws ArugmentNullException
+        }
+
         private Matcher<string> getStringContainsMatcher()
         {
             return Contains(EXCERPT);

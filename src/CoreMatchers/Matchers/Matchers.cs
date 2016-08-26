@@ -378,5 +378,13 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             return new StringEndsWith(true, value);
         }
+
+        /// <summary>
+        /// Creates a matcher that matches the text against the given regular expression.
+        /// </summary>
+        public static Matcher<string> MatchesRegex(string value)
+        {
+            return new StringRegularExpression(value);
+        }
     }
 }

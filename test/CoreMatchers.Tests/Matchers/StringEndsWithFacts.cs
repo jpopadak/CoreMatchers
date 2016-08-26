@@ -212,6 +212,30 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
+        [Fact]
+        public void NullSubString_EndsWith_ThrowsEx()
+        {
+            // Given
+            string expected = null;
+
+            // When
+            Xunit.Assert.Throws<ArgumentNullException>(() => EndsWith(expected));
+
+            // Then - Throws verifies throws ArugmentNullException
+        }
+
+        [Fact]
+        public void NullSubString_EndsWithIgnoringCase_ThrowsEx()
+        {
+            // Given
+            string expected = null;
+
+            // When
+            Xunit.Assert.Throws<ArgumentNullException>(() => EndsWithIgnoringCase(expected));
+
+            // Then - Throws verifies throws ArugmentNullException
+        }
+
         private Matcher<string> getStringEndsWithMatcher()
         {
             return EndsWith(EXCERPT);

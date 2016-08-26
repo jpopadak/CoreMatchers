@@ -19,6 +19,7 @@ namespace JPopadak.CoreMatchers.Matchers
             _ignoringCase = ignoringCase;
             _substring = substring;
 
+            Contract.NotNull(_relationship);
             Contract.NotNull(_substring);
         }
 
