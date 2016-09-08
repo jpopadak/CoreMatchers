@@ -14,7 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher<string> matcher = Not(actual);
+            Matcher matcher = Not(actual);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher<string> matcher = Not(actual);
+            Matcher matcher = Not(actual);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -41,7 +41,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string actual = "value";
             string expected = "ASDF";
-            Matcher<string> matcher = Not(expected);
+            Matcher matcher = Not(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher<string> matcher = Not(actual);
+            Matcher matcher = Not(actual);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -67,7 +67,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher<string> matcher = Not(actual);
+            Matcher matcher = Not(actual);
 
             // When
             TestHelper.AssertDescription("not \"value\"", matcher);
@@ -79,7 +79,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void InstanceOf_NotInstanceOf_NegatedInstanceDescription()
         {
             // Given
-            Matcher<string> matcher = Not(InstanceOf<string>(typeof(string)));
+            Matcher matcher = Not(InstanceOf(typeof(string)));
 
             // When
             TestHelper.AssertDescription("not an instance of System.String", matcher);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public interface IMatcher<in T> : IDescribable
+    public interface IMatcher : IDescribable
     {
         bool Matches(object actual);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher<T>
+    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher
     {
         /// <summary>
         /// Subclasses should implement this. The item will already have been checked

@@ -7,11 +7,11 @@ using System.Collections;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsEqual<T> : Matcher<T>
+    public class IsEqual : Matcher
     {
-        private readonly T _expectedValue;
+        private readonly object _expectedValue;
 
-        public IsEqual(T expectedValue)
+        public IsEqual(object expectedValue)
         {
             _expectedValue = expectedValue;
         }
@@ -97,7 +97,11 @@ namespace JPopadak.CoreMatchers.Matchers
 
         private bool isArray()
         {
-            return typeof(T).IsArray;
+            if (_expectedValue == null)
+            {
+                return false;
+            }
+            return _expectedValue.GetType().IsArray;
         }
     }
 }

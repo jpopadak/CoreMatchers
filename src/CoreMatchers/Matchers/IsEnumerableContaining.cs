@@ -8,9 +8,9 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class IsEnumerableContaining<T> : TypeSafeDiagnosingMatcher<IEnumerable<T>>
     {
-        private readonly Matcher<T> _matcher;
+        private readonly Matcher _matcher;
 
-        public IsEnumerableContaining(Matcher<T> elementMatcher)
+        public IsEnumerableContaining(Matcher elementMatcher)
         {
             _matcher = elementMatcher;
         }

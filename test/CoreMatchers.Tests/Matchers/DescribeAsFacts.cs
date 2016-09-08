@@ -14,7 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string description = "description";
-            Matcher<string> matcher = DescribeAs(description, Anything<string>());
+            Matcher matcher = DescribeAs(description, Anything());
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string description = "description";
-            Matcher<string> matcher = DescribeAs(description, Anything<string>());
+            Matcher matcher = DescribeAs(description, Anything());
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -40,7 +40,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string description = "description";
-            Matcher<string> matcher = DescribeAs(description, Anything<string>());
+            Matcher matcher = DescribeAs(description, Anything());
 
             // When
             TestHelper.AssertDescription(description, matcher);
@@ -55,7 +55,7 @@ namespace JPopadak.CoreMatchers.Matchers
             string description = "description {0} {1}";
             int value1 = 1234;
             string value2 = "value2";
-            Matcher<string> matcher = DescribeAs(description, Anything<string>(), value1, value2);
+            Matcher matcher = DescribeAs(description, Anything(), value1, value2);
 
             // When
             TestHelper.AssertDescription("description <" + value1  + "> \"" + value2 + "\"", matcher);
@@ -69,7 +69,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string description = "description";
             string expected = "hello";
-            Matcher<string> matcher = DescribeAs(description, EqualTo(expected));
+            Matcher matcher = DescribeAs(description, EqualTo(expected));
 
             // When
             TestHelper.AssertMatches(matcher, expected);
@@ -84,7 +84,7 @@ namespace JPopadak.CoreMatchers.Matchers
             string description = "description";
             string expected = "hello";
             string actual = "hello NOPE";
-            Matcher<string> matcher = DescribeAs(description, EqualTo(expected));
+            Matcher matcher = DescribeAs(description, EqualTo(expected));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -99,7 +99,7 @@ namespace JPopadak.CoreMatchers.Matchers
             string description = "description";
             string expected = "hello";
             string actual = "hello NOPE";
-            Matcher<string> matcher = DescribeAs(description, EqualTo(expected));
+            Matcher matcher = DescribeAs(description, EqualTo(expected));
 
             // When
             TestHelper.AssertMismatchDescription("was \"" + actual + "\"", matcher, actual);

@@ -236,12 +236,12 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - Throws verifies throws ArugmentNullException
         }
 
-        private Matcher<string> getStringEndsWithMatcher()
+        private Matcher getStringEndsWithMatcher()
         {
             return EndsWith(EXCERPT);
         }
 
-        private Matcher<string> getIgnoreCaseStringEndsWithMatcher()
+        private Matcher getIgnoreCaseStringEndsWithMatcher()
         {
             return EndsWithIgnoringCase(EXCERPT);
         }

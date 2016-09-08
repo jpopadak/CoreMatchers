@@ -18,7 +18,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = Anything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, null);
@@ -30,7 +30,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ObjectValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = Anything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, new object());
@@ -42,7 +42,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void WhateverClassValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = Anything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, new Whatever());
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void StringValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = Anything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, "stringValue");
@@ -66,7 +66,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ObjectValueAndDescription_Anything_DescriptionMatchesNewDescriptioni()
         {
             // Given
-            Matcher<string> matcher = Anything<string>("new description");
+            Matcher matcher = Anything("new description");
 
             // When
             TestHelper.AssertDescription("new description", matcher);
@@ -78,7 +78,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ObjectValueAndDefaultDescription_Anything_DescriptioniIsANYTHINGText()
         {
             // Given
-            Matcher<string> matcher = Anything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertDescription("ANYTHING", matcher);

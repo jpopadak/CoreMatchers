@@ -14,7 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             int expected = 5;
-            Matcher<int> matcher = IsSameInstance(expected);
+            Matcher matcher = IsSameInstance(expected);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             int expected = 5;
-            Matcher<int> matcher = IsSameInstance(expected);
+            Matcher matcher = IsSameInstance(expected);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -40,7 +40,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             object expected = new object();
-            Matcher<object> matcher = IsSameInstance(expected);
+            Matcher matcher = IsSameInstance(expected);
 
             // When
             TestHelper.AssertMatches(matcher, expected);
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             object expected = new object();
             object actual = new object();
-            Matcher<object> matcher = IsSameInstance(expected);
+            Matcher matcher = IsSameInstance(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -67,7 +67,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             object expected = new object();
-            Matcher<object> matcher = TheInstance(expected);
+            Matcher matcher = TheInstance(expected);
 
             // When
             TestHelper.AssertMatches(matcher, expected);
@@ -81,7 +81,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             object expected = new object();
             object actual = new object();
-            Matcher<object> matcher = TheInstance(expected);
+            Matcher matcher = TheInstance(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -94,7 +94,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string expected = "string Value";
-            Matcher<string> matcher = TheInstance(expected);
+            Matcher matcher = TheInstance(expected);
 
             // When
             TestHelper.AssertDescription("sameInstance(\"" + expected + "\")", matcher);
@@ -106,7 +106,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ExpectedNull_TheInstance_ReturnsDescriptionWithSameInstanceWithNull()
         {
             // Given
-            Matcher<string> matcher = TheInstance<string>(null);
+            Matcher matcher = TheInstance<string>(null);
 
             // When
             TestHelper.AssertDescription("sameInstance(null)", matcher);

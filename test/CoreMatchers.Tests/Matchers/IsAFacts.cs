@@ -14,7 +14,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(int);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(int);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -40,7 +40,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(int);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 1);
@@ -53,7 +53,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(double);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 1.1);
@@ -66,7 +66,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(double);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, new object());
@@ -80,7 +80,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string text = "some text";
             Type actual = typeof(double);
-            Matcher<Type> matcher = IsA<Type>(actual);
+            Matcher matcher = IsA(actual);
 
             // When
             TestHelper.AssertMismatchDescription("\"" + text + "\" is an instance of System.String", matcher, text);
@@ -93,7 +93,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(bool);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, true);
@@ -106,7 +106,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(byte);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, (byte)1);
@@ -119,7 +119,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(char);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 'C');
@@ -132,7 +132,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(double);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 5.0);
@@ -145,7 +145,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(float);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 5.0f);
@@ -158,7 +158,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(int);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 2);
@@ -171,7 +171,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(long);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, 4L);
@@ -184,7 +184,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             Type actual = typeof(short);
-            Matcher<Type> matcher = Any<Type>(actual);
+            Matcher matcher = Any(actual);
 
             // When
             TestHelper.AssertMatches(matcher, (short)1);

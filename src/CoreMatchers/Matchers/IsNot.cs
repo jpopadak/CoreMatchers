@@ -6,11 +6,11 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsNot<T> : Matcher<T>
+    public class IsNot : Matcher
     {
-        private readonly Matcher<T> _matcher;
+        private readonly Matcher _matcher;
 
-        public IsNot(Matcher<T> matcher)
+        public IsNot(Matcher matcher)
         {
             _matcher = matcher;
         }

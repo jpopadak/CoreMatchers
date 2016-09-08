@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public sealed class CombinationBothMatcher<T>
+    public sealed class CombinationBothMatcher
     {
-        private readonly Matcher<T> _firstMatcher;
+        private readonly Matcher _firstMatcher;
 
-        public CombinationBothMatcher(Matcher<T> matcher)
+        public CombinationBothMatcher(Matcher matcher)
         {
             _firstMatcher = matcher;
         }
 
-        public CombinationMatcher<T> And(Matcher<T> otherMatcher)
+        public CombinationMatcher<T> And<T>(Matcher otherMatcher)
         {
             return new CombinationMatcher<T>(_firstMatcher).And(otherMatcher);
         }

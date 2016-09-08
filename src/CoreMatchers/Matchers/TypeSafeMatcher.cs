@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class TypeSafeMatcher<T> : Matcher<T>
+    public abstract class TypeSafeMatcher<T> : Matcher
     {
         /// <summary>
         /// Subclasses should implement this. The item will already have been checked for

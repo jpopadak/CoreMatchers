@@ -8,7 +8,7 @@ using JPopadak.CoreMatchers.Contracts;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsA<T> : DiagnosingMatcher<T>
+    public class IsA : DiagnosingMatcher
     {
         private readonly Type _type;
 

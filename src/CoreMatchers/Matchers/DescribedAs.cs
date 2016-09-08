@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class DescribedAs<T> : Matcher<T>
+    public class DescribedAs : Matcher
     {
         private readonly static Regex ARG_PATTERN = new Regex("{([0-9]+)}");
         private readonly string _descriptionTemplate;
-        private readonly Matcher<T> _matcher;
+        private readonly Matcher _matcher;
         private readonly object[] _args;
 
-        public DescribedAs(string descriptionTemplate, Matcher<T> matcher, object[] values)
+        public DescribedAs(string descriptionTemplate, Matcher matcher, object[] values)
         {
             _descriptionTemplate = descriptionTemplate;
             _matcher = matcher;
