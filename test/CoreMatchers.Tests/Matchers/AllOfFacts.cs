@@ -10,7 +10,7 @@ namespace JPopadak.CoreMatchers.Matchers
     public class AllOfFacts
     {
         [Fact]
-        public void NullValue_IsA_IsNullSafe()
+        public void NullValue_AllOf_IsNullSafe()
         {
             // Given
             Matcher matcher = AllOf(EqualTo("irrelevant"), StartsWith("irr"));
@@ -22,7 +22,7 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void UnknownType_IsA_IsUnknownTypeSafe()
+        public void UnknownType_AllOf_IsUnknownTypeSafe()
         {
             // Given
             Matcher matcher = AllOf(EqualTo("irrelevant"), StartsWith("irr"));
