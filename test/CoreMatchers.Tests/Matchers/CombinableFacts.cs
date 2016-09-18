@@ -7,7 +7,7 @@ using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class CombineableFacts
+    public class CombinableFacts
     {
         private static readonly CombinationMatcher<int> EITHER_3_OR_4 = Either(EqualTo(3)).Or<int>(EqualTo(4));
         private static readonly CombinationMatcher<int> NOT_3_AND_NOT_4 = Both(Not(EqualTo(3))).And<int>(Not(EqualTo(4)));
