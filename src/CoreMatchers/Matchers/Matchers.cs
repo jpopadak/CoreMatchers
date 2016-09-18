@@ -80,6 +80,15 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher for IEnumerables that only matches when a single pass over the
+        /// examined IEnumerable yields items that are all matched by the specified itemMatcher.
+        /// </summary>
+        public static Matcher EveryItem<T>(Matcher itemMatcher)
+        {
+            return new Every<T>(itemMatcher);
+        }
+
+        /// <summary>
         /// Decorates another Matcher, retaining its behaviour, but allowing tests
         /// to be slightly more expressive.
         /// </summary>
@@ -324,6 +333,15 @@ namespace JPopadak.CoreMatchers.Matchers
         /// string anywhere.
         /// </summary>
         public static Matcher Contains(string value)
+        {
+            return new StringContains(false, value);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches if the examined String contains the specified
+        /// string anywhere.
+        /// </summary>
+        public static Matcher ContainsString(string value)
         {
             return new StringContains(false, value);
         }
