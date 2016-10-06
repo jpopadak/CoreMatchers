@@ -161,7 +161,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// <code>itemMatcher</code>. Whilst matching, the traversal of the examined IEnumerable
         /// will stop as soon as a matching item is found.
         /// </summary>
-        public static Matcher HasItem<T>(T item)
+        public static Matcher HasItemEqualTo<T>(T item)
         {
             return new IsEnumerableContaining<T>(new IsEqual(item));
         }
@@ -190,7 +190,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// matcher from the specified <code>itemMatchers</code>.  Whilst matching, each traversal of
         /// the examined IEnumerables will stop as soon as a matching item is found.
         /// </summary>
-        public static Matcher HasItems<T>(params T[] values)
+        public static Matcher HasItemsEqualTo<T>(params T[] values)
         {
             List<Matcher> all = new List<Matcher>(values.Length);
 
