@@ -3,16 +3,17 @@
   "configurations": {
     "Debug": {
       "buildOptions": {
-        "debugType": "portable",
-        "define": [ "RELEASE", "TRACE" ],
+        "debugType": "full",
+        "define": [ "DEBUG", "TRACE" ],
         "warningsAsErrors": true
       }
     },
     "Release": {
       "buildOptions": {
-        "debugType": "portable",
+        "debugType": "none",
         "define": [ "RELEASE", "TRACE" ],
-        "warningsAsErrors": true
+        "warningsAsErrors": true,
+        "optimize": true
       }
     }
   },
@@ -20,7 +21,7 @@
     "NETStandard.Library": "1.6.0",
     "System.Reflection.TypeExtensions": "4.1.0"
   },
-  "description": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java.",
+  "description": "An implementation of assertion matchers for testing.",
   "frameworks": {
     "netstandard1.6": {
       "imports": "dnxcore50"
@@ -34,9 +35,9 @@
       "type": "git",
       "url": "https://github.com/jpopadak/CoreMatchers"
     },
-    "summary": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java",
+    "summary": "An implementation of assertion matchers for testing.",
     "requireLicenseAcceptance": false,
     "tags": [ ".NET", "DNX", "Core", "Matchers", "Test", "Hamcrest" ]
   },
-  "version": "0.0.2-*"
+  "version": "1.0.0-*"
 }
