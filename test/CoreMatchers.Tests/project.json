@@ -1,17 +1,22 @@
 {
   "dependencies": {
-    "Microsoft.NETCore.App": "1.1.0-preview1-001100-00",
-    "CoreMatchers": {
-      "target": "project"
+      "NETStandard.Library": "1.6.1-preview1-24530-04",
+      "CoreMatchers": {
+        "target": "project"
+      },
+      "dotnet-test-xunit": "2.2.0-preview2-build1029",
+      "xunit": "2.2.0-beta4-build3444"
     },
-    "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "xunit": "2.2.0-beta4-build3444"
-  },
-  "frameworks": {
-    "netcoreapp1.0": {
-      "imports": "dnxcore50"
-    }
-  },
-  "testRunner": "xunit",
-  "version": "1.0.0-*"
-}
+    "frameworks": {
+        "netcoreapp1.0": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "type": "platform",
+              "version": "1.0.0"
+            }
+          }
+        }
+    },
+    "testRunner": "xunit",
+    "version": "1.0.0-*"
+  }
