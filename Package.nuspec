@@ -2,17 +2,16 @@
 <package >
   <metadata>
     <id>Package</id>
-    <version>0.0.1</version>
-    <authors>jimpo</authors>
-    <owners>jimpo</owners>
+    <version>1.0</version>
+    <authors>Jim Popadak</authors>
+    <owners>Jim Popadak</owners>
     <licenseUrl>https://opensource.org/licenses/BSD-3-Clause</licenseUrl>
     <projectUrl>https://github.com/jpopadak/CoreMatchers</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>An implementation of assertion matchers for testing. Similar to Mockito for Java</description>
-    <releaseNotes>Initial Implementation</releaseNotes>
+    <description>An implementation of assertion matchers for testing. Similar to other assert matchers for Java</description>
+    <releaseNotes>First Release</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>.NET Core DNX Matchers Hamcrest</tags>
+    <tags>.NET Core .NETStandard NETStandard DNX Matchers Hamcrest</tags>
     <dependencies>
       <dependency id="NETStandard.Library" version="1.6.0" />
     </dependencies>
