@@ -44,4 +44,4 @@ notifications:
 # Publish the nuget package to AppVeyors account and project feeds
 nuget:
   account_feed: true
-  project_feed: 
+  project_feed: true
