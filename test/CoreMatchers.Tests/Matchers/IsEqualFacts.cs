@@ -13,7 +13,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "actual";
-            Matcher<string> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -26,7 +26,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "actual";
-            Matcher<string> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -39,7 +39,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "actual";
-            Matcher<string> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -53,7 +53,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string actual = "actual";
             string expected = "expected";
-            Matcher<string> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -67,7 +67,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string actual = null;
             string expected = "expected";
-            Matcher<string> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -80,7 +80,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             int actual = 1;
-            Matcher<int> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -94,7 +94,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int actual = 1;
             int expected = -1;
-            Matcher<int> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -108,7 +108,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int? actual = null;
             int expected = 1;
-            Matcher<int> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -122,7 +122,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int? actual = null;
             int? expected = null;
-            Matcher<object> matcher = Matchers.EqualTo<object>(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -136,7 +136,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int actual = 2;
             int? expected = null;
-            Matcher<object> matcher = Matchers.EqualTo<object>(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -150,7 +150,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string actual = "actual";
             int? expected = null;
-            Matcher<object> matcher = Matchers.EqualTo<object>(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -164,7 +164,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", "actual2", "actual3" };
             int? expected = null;
-            Matcher<object> matcher = Matchers.EqualTo<object>(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -177,7 +177,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string[] actual = { "actual1", "actual2", "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -191,7 +191,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", "actual2", "actual3" };
             string[] expected = { "actual1", "actual2", "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -205,7 +205,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", "actual2", "actual3" };
             string[] expected = { "expected1", "expected2", "expected3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -219,7 +219,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", "actual2", "actual3" };
             string[] expected = { "expected1" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -233,7 +233,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = null;
             string[] expected = { "actual1", "actual2", "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -247,7 +247,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string[] actual = { "actual1", null, "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -261,7 +261,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", null, "actual3" };
             string[] expected = { "actual1", null, "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -275,7 +275,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", null, "actual3" };
             string[] expected = { "expected1", "expected2", "expected3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -289,7 +289,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = { "actual1", null, "actual3" };
             string[] expected = { "expected1" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -303,7 +303,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string[] actual = null;
             string[] expected = { "actual1", null, "actual3" };
-            Matcher<string[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -317,7 +317,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int[] actual = { 1, 2, 3 };
             int? expected = null;
-            Matcher<object> matcher = Matchers.EqualTo<object>(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -330,7 +330,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             int[] actual = { 1, 2, 3 };
-            Matcher<int[]> matcher = Matchers.EqualTo(actual);
+            Matcher matcher = Matchers.EqualTo(actual);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -344,7 +344,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int[] actual = { 1, 2, 3 };
             int[] expected = { 1, 2, 3 };
-            Matcher<int[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -358,7 +358,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int[] actual = { 1, 2, 3 };
             int[] expected = { -1, -2, -3 };
-            Matcher<int[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -372,7 +372,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int[] actual = { 1, 2, 3 };
             int[] expected = { 1 };
-            Matcher<int[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -386,7 +386,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int[] actual = null;
             int[] expected = { 1, 2, 3 };
-            Matcher<int[]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -400,7 +400,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
             int?[,,] expected = { { {  1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
-            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -414,7 +414,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
             int?[,,] expected = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, null } } };
-            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -428,7 +428,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
             int?[,,] expected = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 4 } } };
-            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -442,7 +442,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             int?[,,] actual = { { { 1, 2, 3 }, { 1, 2, 3 } }, { { 1, 2, 3 }, { 1, 2, 3 } } };
             int?[,,] expected = { { { 1, 2, 3, 4 }, { 1, 2, 3, 4 } }, { { 1, 2, 3, 4 }, { 1, 2, 3, 4 } } };
-            Matcher<int?[,,]> matcher = Matchers.EqualTo(expected);
+            Matcher matcher = Matchers.EqualTo(expected);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);

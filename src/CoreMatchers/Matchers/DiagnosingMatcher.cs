@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class DiagnosingMatcher<T> : Matcher<T>
+    public abstract class DiagnosingMatcher : Matcher
     {
         public sealed override bool Matches(object item)
         {

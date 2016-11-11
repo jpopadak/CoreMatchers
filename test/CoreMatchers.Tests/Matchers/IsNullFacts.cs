@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
@@ -12,7 +13,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_IsNull_IsNullSafe()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNull<string>();
+            Matcher matcher = IsNull();
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -24,7 +25,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_IsNotNull_IsNullSafe()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNotNull<string>();
+            Matcher matcher = IsNotNull();
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -36,7 +37,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void UnknownTypeValue_IsNull_IsTypeSafe()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNull<string>();
+            Matcher matcher = IsNull();
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -48,7 +49,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void UnknownTypeValue_IsNotNull_IsTypeSafe()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNotNull<string>();
+            Matcher matcher = IsNotNull();
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -60,7 +61,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_IsNull_True()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNull<string>();
+            Matcher matcher = IsNull();
 
             // When
             TestHelper.AssertMatches(matcher, null);
@@ -72,7 +73,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NotNullValue_IsNull_False()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNull<string>();
+            Matcher matcher = IsNull();
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, new object());
@@ -84,7 +85,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_IsNotNull_False()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNotNull<string>();
+            Matcher matcher = IsNotNull();
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, null);
@@ -96,7 +97,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NotNullValue_IsNotNull_True()
         {
             // Given
-            Matcher<string> matcher = Matchers.IsNotNull<string>();
+            Matcher matcher = IsNotNull();
 
             // When
             TestHelper.AssertMatches(matcher, new object());

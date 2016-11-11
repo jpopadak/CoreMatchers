@@ -6,18 +6,18 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsSame<T> : Matcher<T>
+    public class IsSame : Matcher
     {
-        private readonly T _value;
+        private readonly object _value;
 
-        public IsSame(T value)
+        public IsSame(object value)
         {
             _value = value;
         }
 
         public override bool Matches(object actual)
         {
-            return object.ReferenceEquals(actual, _value);
+            return ReferenceEquals(actual, _value);
         }
 
         public override void Describe(IDescription description)

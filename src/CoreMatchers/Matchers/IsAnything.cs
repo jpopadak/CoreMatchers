@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsAnything<T> : Matcher<T>
+    public class IsAnything : Matcher
     {
         private readonly string _message;
 

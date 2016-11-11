@@ -3,24 +3,25 @@
   "configurations": {
     "Debug": {
       "buildOptions": {
-        "debugType": "portable",
-        "define": [ "RELEASE", "TRACE" ],
+        "debugType": "full",
+        "define": [ "DEBUG", "TRACE" ],
         "warningsAsErrors": true
       }
     },
     "Release": {
       "buildOptions": {
-        "debugType": "portable",
+        "debugType": "none",
         "define": [ "RELEASE", "TRACE" ],
-        "warningsAsErrors": true
+        "warningsAsErrors": true,
+        "optimize": true
       }
     }
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "System.Reflection.TypeExtensions": "4.1.0"
+    "NETStandard.Library": "1.6.1-preview1-24530-04",
+    "System.Reflection.TypeExtensions": "4.3.0-preview1-24530-04"
   },
-  "description": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java.",
+  "description": "An implementation of assertion matchers for testing.",
   "frameworks": {
     "netstandard1.6": {
       "imports": "dnxcore50"
@@ -29,14 +30,14 @@
   "packOptions": {
     "licenseUrl": "https://api.github.com/licenses/bsd-3-clause",
     "owners": [ "Jim Popadak" ],
-    "releaseNotes": "Initial Implementation\n- EqualTo() with Arrays does not currently work",
+    "releaseNotes": "Finished all xUnit tests",
     "repository": {
       "type": "git",
       "url": "https://github.com/jpopadak/CoreMatchers"
     },
-    "summary": "An implementation of assertion matchers for testing. Similar to Hamcrest for Java",
+    "summary": "An implementation of assertion matchers for testing.",
     "requireLicenseAcceptance": false,
     "tags": [ ".NET", "DNX", "Core", "Matchers", "Test", "Hamcrest" ]
   },
-  "version": "0.0.2-*"
+  "version": "1.0.0-*"
 }

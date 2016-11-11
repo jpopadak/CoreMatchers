@@ -8,9 +8,9 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class CombinationMatcher<T> : TypeSafeDiagnosingMatcher<T>
     {
-        private readonly Matcher<T> _matcher;
+        private readonly Matcher _matcher;
 
-        public CombinationMatcher(Matcher<T> matcher)
+        public CombinationMatcher(Matcher matcher)
         {
             _matcher = matcher;
         }
@@ -30,14 +30,14 @@ namespace JPopadak.CoreMatchers.Matchers
             return true;
         }
 
-        public CombinationMatcher<T> And(Matcher<T> other)
+        public CombinationMatcher<T> And(Matcher other)
         {
-            return new CombinationMatcher<T>(new AllOf<T>(_matcher, other));
+            return new CombinationMatcher<T>(new AllOf(_matcher, other));
         }
 
-        public CombinationMatcher<T> Or(Matcher<T> other)
+        public CombinationMatcher<T> Or(Matcher other)
         {
-            return new CombinationMatcher<T>(new AnyOf<T>(_matcher, other));
+            return new CombinationMatcher<T>(new AnyOf(_matcher, other));
         }
     }
 }

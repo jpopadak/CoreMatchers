@@ -1,0 +1,55 @@
+version: '1.0.{build}'
+configuration:
+- Debug
+- Release
+platform: Any CPU
+environment:
+  # Don't report back to the mothership
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+# Initialize
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+
+before_build:
+- appveyor-retry dotnet restore -v Minimal
+
+build_script:
+- dotnet build "src\CoreMatchers" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+
+after_build:
+- dotnet pack "src\CoreMatchers" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+
+# Dont need this yet because we are publishing a full app, only a library
+#- dotnet publish "src\CoreMatchers" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts\CoreMatchers
+
+test_script:
+- dotnet test "test\CoreMatchers.Tests" -c %CONFIGURATION%
+
+artifacts:
+- path: artifacts\**\*.*
+
+cache:
+- '%USERPROFILE%\.nuget\packages'
+
+# Run the demo to show that it works
+#on_finish:
+#- dotnet artifacts\ConsoleApplication\ConsoleApplication.dll
+
+# Slack notification
+notifications:
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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 
+
+# Publish the nuget package to AppVeyors account and project feeds
+nuget:
+  account_feed: true
+  project_feed: true
+
+# Deploy to the NuGet site
+deploy:
+  provider: NuGet
+  api_key:
+    secure: ioMFyLBW4dMCoxw6mxAJ30minKSdQLpVqpPzp7kzi/k0oRo+uk/mnSZkUrzY3MWZ
+  skip_symbols: false
+  artifact: /.*\.nupkg/

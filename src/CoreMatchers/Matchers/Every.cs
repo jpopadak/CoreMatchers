@@ -8,9 +8,9 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class Every<T> : TypeSafeDiagnosingMatcher<IEnumerable<T>>
     {
-        private readonly Matcher<T> _matcher;
+        private readonly Matcher _matcher;
 
-        public Every(Matcher<T> matcher)
+        public Every(Matcher matcher)
         {
             _matcher = matcher;
         }

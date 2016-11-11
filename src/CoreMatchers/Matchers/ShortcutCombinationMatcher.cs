@@ -6,18 +6,18 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class ShortcutCombinationMatcher<T> : Matcher<T>
+    public abstract class ShortcutCombinationMatcher : Matcher
     {
-        private readonly Matcher<T>[] _matchers;
+        private readonly Matcher[] _matchers;
 
-        protected ShortcutCombinationMatcher(params Matcher<T>[] matchers)
+        protected ShortcutCombinationMatcher(params Matcher[] matchers)
         {
             _matchers = matchers;
         }
 
         protected bool matches(object value, bool shortcut)
         {
-            foreach (Matcher<T> matcher in _matchers)
+            foreach (Matcher matcher in _matchers)
             {
                 if (matcher.Matches(value) == shortcut)
                 {

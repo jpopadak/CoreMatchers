@@ -9,12 +9,12 @@ namespace JPopadak.CoreMatchers
 {
     public class TestHelper
     {
-        public static void AssertMatches<T>(Matcher<T> matcher, object arg)
+        public static void AssertMatches(Matcher matcher, object arg)
         {
             AssertMatches("Expected match, but mismatched", matcher, arg);
         }
 
-        public static void AssertMatches<T>(String message, Matcher<T> matcher, object arg)
+        public static void AssertMatches(string message, Matcher matcher, object arg)
         {
             bool matches = matcher.Matches(arg);
             if (!matches)
@@ -23,17 +23,17 @@ namespace JPopadak.CoreMatchers
             }
         }
         
-        public static void AssertDoesNotMatch<T>(Matcher<T> c, object arg)
+        public static void AssertDoesNotMatch(Matcher c, object arg)
         {
             AssertDoesNotMatch("Unexpected match", c, arg);
         }
 
-        public static void AssertDoesNotMatch<T>(String message, Matcher<T> c, object arg)
+        public static void AssertDoesNotMatch(string message, Matcher c, object arg)
         {
             Xunit.Assert.False(c.Matches(arg), message);
         }
 
-        public static void AssertDescription<T>(String expected, Matcher<T> matcher)
+        public static void AssertDescription(string expected, Matcher matcher)
         {
             Description description = new Description();
             description.AppendDescribable(matcher);
@@ -41,13 +41,13 @@ namespace JPopadak.CoreMatchers
             Xunit.Assert.Equal(expected, description.ToString(), ignoreWhiteSpaceDifferences: true);
         }
 
-        public static void AssertMismatchDescription<T>(String expected, Matcher<T> matcher, object arg)
+        public static void AssertMismatchDescription(string expected, Matcher matcher, object arg)
         {
             Xunit.Assert.False(matcher.Matches(arg), "Precondition: Matcher should not match item.");
             Xunit.Assert.Equal(expected, mismatchDescription(matcher, arg), ignoreWhiteSpaceDifferences: true);
         }
 
-        public static void AssertNullSafe<T>(Matcher<T> matcher)
+        public static void AssertNullSafe(Matcher matcher)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace JPopadak.CoreMatchers
             }
         }
 
-        public static void AssertUnknownTypeSafe<T>(Matcher<T> matcher)
+        public static void AssertUnknownTypeSafe(Matcher matcher)
         {
             try
             {
@@ -70,12 +70,12 @@ namespace JPopadak.CoreMatchers
                 Xunit.Assert.True(false, "Matcher was not unknown type safe, because: " + ex);
             }
         }
-        public void TestIsNullSafe<T>(Matcher<T> matcher)
+        public void TestIsNullSafe(Matcher matcher)
         {
             AssertNullSafe(matcher);
         }
 
-        public void TestCopesWithUnknownTypes<T>(Matcher<T> matcher)
+        public void TestCopesWithUnknownTypes(Matcher matcher)
         {
             matcher.Matches(new UnknownType());
         }
@@ -85,7 +85,7 @@ namespace JPopadak.CoreMatchers
             // Do Nothing
         }
 
-        private static string mismatchDescription<T>(Matcher<T> matcher, object arg)
+        private static string mismatchDescription(Matcher matcher, object arg)
         {
             Description description = new Description();
             matcher.DescribeMismatch(arg, description);

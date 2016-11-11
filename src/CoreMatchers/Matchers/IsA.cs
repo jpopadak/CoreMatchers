@@ -8,7 +8,7 @@ using JPopadak.CoreMatchers.Contracts;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsA<T> : DiagnosingMatcher<T>
+    public class IsA : DiagnosingMatcher
     {
         private readonly Type _type;
 
@@ -20,7 +20,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public override void Describe(IDescription description)
         {
-            description.AppendText("an instance of ").AppendText(_type.Name);
+            description.AppendText("an instance of ").AppendText(_type.FullName);
         }
 
         protected override bool Matches(object actual, IDescription mismatchDescription)

@@ -15,10 +15,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void NullValue_IsAnything_ReturnsTrue()
+        public void NullValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, null);
@@ -27,10 +27,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void ObjectValue_IsAnything_ReturnsTrue()
+        public void ObjectValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, new object());
@@ -39,10 +39,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void WhateverClassValue_IsAnything_ReturnsTrue()
+        public void WhateverClassValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, new Whatever());
@@ -51,10 +51,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void StringValue_IsAnything_ReturnsTrue()
+        public void StringValue_Anything_ReturnsTrue()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertMatches(matcher, "stringValue");
@@ -63,10 +63,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void ObjectValueAndDescription_IsAnything_DescriptionMatchesNewDescriptioni()
+        public void ObjectValueAndDescription_Anything_DescriptionMatchesNewDescriptioni()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>("new description");
+            Matcher matcher = Anything("new description");
 
             // When
             TestHelper.AssertDescription("new description", matcher);
@@ -75,10 +75,10 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void ObjectValueAndDefaultDescription_IsAnything_DescriptioniIsANYTHINGText()
+        public void ObjectValueAndDefaultDescription_Anything_DescriptioniIsANYTHINGText()
         {
             // Given
-            Matcher<string> matcher = IsAnything<string>();
+            Matcher matcher = Anything();
 
             // When
             TestHelper.AssertDescription("ANYTHING", matcher);

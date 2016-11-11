@@ -6,16 +6,16 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class AllOf<T> : DiagnosingMatcher<T>
+    public class AllOf : DiagnosingMatcher
     {
-        private readonly Matcher<T>[] _matchers;
+        private readonly Matcher[] _matchers;
 
-        public AllOf(params Matcher<T>[] matchers)
+        public AllOf(params Matcher[] matchers)
         {
             _matchers = matchers;
         }
 
-        public AllOf(IEnumerable<Matcher<T>> matchers)
+        public AllOf(IEnumerable<Matcher> matchers)
             : this(matchers.ToArray())
         {
             // Do Nothing
@@ -28,7 +28,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         protected override bool Matches(object actual, IDescription description)
         {
-            foreach (Matcher<T> matcher in _matchers)
+            foreach (Matcher matcher in _matchers)
             {
                 if (!matcher.Matches(actual))
                 {

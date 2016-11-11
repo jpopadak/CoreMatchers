@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsNull<T> : Matcher<T>
+    public class IsNull : Matcher
     {
         public override bool Matches(object actual)
         {

@@ -6,7 +6,7 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class Matcher<T> : IMatcher<T>
+    public abstract class Matcher : IMatcher
     {
         public abstract void Describe(IDescription description);
 

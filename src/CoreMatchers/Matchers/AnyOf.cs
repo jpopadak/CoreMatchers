@@ -6,15 +6,15 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class AnyOf<T> : ShortcutCombinationMatcher<T>
+    public class AnyOf : ShortcutCombinationMatcher
     {
-        public AnyOf(params Matcher<T>[] matchers)
+        public AnyOf(params Matcher[] matchers)
             : base(matchers)
         {
             // Do Nothing
         }
 
-        public AnyOf(IEnumerable<Matcher<T>> matchers)
+        public AnyOf(IEnumerable<Matcher> matchers)
             : this(matchers.ToArray())
         {
             // Do Nothing

@@ -15,7 +15,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "actual";
-            Matcher<string> matcher = Is(actual);
+            Matcher matcher = Is(actual);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -28,7 +28,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "actual";
-            Matcher<string> matcher = Is(actual);
+            Matcher matcher = Is(actual);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -41,7 +41,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             bool actual = true;
-            Matcher<bool> matcher = new Is<bool>(new IsEqual<bool>(actual));
+            Matcher matcher = new Is(new IsEqual(actual));
 
             // When
             TestHelper.AssertMatches(matcher, true);
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             bool actual = true;
-            Matcher<bool> matcher = new Is<bool>(new IsEqual<bool>(actual));
+            Matcher matcher = new Is(new IsEqual(actual));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, false);
@@ -67,7 +67,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             bool actual = true;
-            Matcher<bool> matcher = new Is<bool>(new IsEqual<bool>(actual));
+            Matcher matcher = new Is(new IsEqual(actual));
 
             // When
             TestHelper.AssertDescription("is <True>", matcher);
@@ -80,7 +80,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             char expected = 'A';
-            Matcher<char> matcher = Is(expected);
+            Matcher matcher = Is(expected);
 
             // When
             TestHelper.AssertDescription("is \"A\"", matcher);
