@@ -39,14 +39,14 @@ cache:
 # Slack notification
 notifications:
 - provider: Slack
-  incoming_webhook=https://hooks.slack.com/services/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 
+  incoming_webhook: https://hooks.slack.com/services/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 
 
-# Publish the nuget package to AppVeyor's account and project feeds
+# Publish the nuget package to AppVeyors account and project feeds
 nuget:
   account_feed: true
   project_feed: true
 
-# Deploy to the NuGet.org site
+# Deploy to the NuGet site
 deploy:
   provider: NuGet
   api_key:
