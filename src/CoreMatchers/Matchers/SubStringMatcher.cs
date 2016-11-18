@@ -1,8 +1,4 @@
 ﻿using JPopadak.CoreMatchers.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers

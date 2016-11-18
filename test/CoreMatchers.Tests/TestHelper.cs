@@ -1,9 +1,6 @@
 ﻿using JPopadak.CoreMatchers.Descriptions;
 using JPopadak.CoreMatchers.Matchers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JPopadak.CoreMatchers
 {

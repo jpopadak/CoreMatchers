@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JPopadak.CoreMatchers.Descriptions;
+﻿using JPopadak.CoreMatchers.Descriptions;
 using Xunit;
-using JPopadak.CoreMatchers;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
