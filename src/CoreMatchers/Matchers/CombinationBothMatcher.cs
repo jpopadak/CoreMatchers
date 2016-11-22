@@ -1,15 +1,15 @@
 ﻿namespace JPopadak.CoreMatchers.Matchers
 {
-    public sealed class CombinationBothMatcher
+    public sealed class CombinationBothMatcher<T>
     {
-        private readonly Matcher _firstMatcher;
+        private readonly IMatcher<T> _firstMatcher;
 
-        public CombinationBothMatcher(Matcher matcher)
+        public CombinationBothMatcher(IMatcher<T> matcher)
         {
             _firstMatcher = matcher;
         }
 
-        public CombinationMatcher<T> And<T>(Matcher otherMatcher)
+        public CombinationMatcher<T> And(IMatcher<T> otherMatcher)
         {
             return new CombinationMatcher<T>(_firstMatcher).And(otherMatcher);
         }

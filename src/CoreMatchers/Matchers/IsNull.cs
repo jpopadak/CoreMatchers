@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsNull : Matcher
+    public class IsNull<T> : Matcher<T>
     {
         public override bool Matches(object actual)
         {

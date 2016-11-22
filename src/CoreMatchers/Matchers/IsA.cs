@@ -5,7 +5,7 @@ using JPopadak.CoreMatchers.Contracts;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsA : DiagnosingMatcher
+    public class IsA : DiagnosingMatcher<Type>
     {
         private readonly Type _type;
 
@@ -28,7 +28,7 @@ namespace JPopadak.CoreMatchers.Matchers
                 return false;
             }
             
-            if (!(_type.IsInstanceOfType(actual)))
+            if (!_type.IsInstanceOfType(actual))
             {
                 Type actualType = actual.GetType();
                 mismatchDescription.AppendValue(actual).AppendText(" is an instance of ").AppendText(actualType.FullName);

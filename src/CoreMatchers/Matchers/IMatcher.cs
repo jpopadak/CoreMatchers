@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public interface IMatcher : IDescribable
+    public interface IMatcher<out T> : IDescribable
     {
         bool Matches(object actual);
 

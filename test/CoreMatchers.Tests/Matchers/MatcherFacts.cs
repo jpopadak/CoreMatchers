@@ -8,7 +8,7 @@ namespace JPopadak.CoreMatchers.Matchers
     {
         private const string DESCRIPTION = "Some Description";
 
-        class MatcherSubClass : Matcher
+        class MatcherSubClass<T> : Matcher<T>
         {
             public override void Describe(IDescription description)
             {
@@ -25,7 +25,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestMatcherSubClass_ToString_CallsDescribeAndReturnsSomeDescription()
         {
             // Given
-            MatcherSubClass subClass = new MatcherSubClass();
+            MatcherSubClass<object> subClass = new MatcherSubClass<object>();
 
             // When
             var stringValue = subClass.ToString();
