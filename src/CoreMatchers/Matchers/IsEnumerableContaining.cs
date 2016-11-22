@@ -6,9 +6,9 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class IsEnumerableContaining<T> : TypeSafeDiagnosingMatcher<IEnumerable<T>>
     {
-        private readonly Matcher _matcher;
+        private readonly IMatcher<T> _matcher;
 
-        public IsEnumerableContaining(Matcher elementMatcher)
+        public IsEnumerableContaining(IMatcher<T> elementMatcher)
         {
             _matcher = elementMatcher;
         }
@@ -21,8 +21,10 @@ namespace JPopadak.CoreMatchers.Matchers
 
         private bool isEmpty(IEnumerable<T> enumerable)
         {
-            IEnumerator<T> enumerator = enumerable.GetEnumerator();
-            return (!enumerator.MoveNext());
+            using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
+            {
+                return !enumerator.MoveNext();
+            }
         }
 
         private bool doesOneMatch(IEnumerable<T> enumerable)

@@ -19,30 +19,6 @@ namespace JPopadak.CoreMatchers.Matchers
             }
         }
 
-        class TypeSafeDiagnosingMatcherSubClass<T> : TypeSafeDiagnosingMatcher<T>
-        {
-            public override void Describe(IDescription description)
-            {
-                description.AppendText("sub type");
-            }
-
-            protected override bool MatchesSafely(T item, IDescription mismatchDescription)
-            {
-                return true;
-            }
-        }
-
-        class NotBuiltIn
-        {
-            public override string ToString() { return "NotBuiltIn"; }
-        }
-
-        class OtherNotBuiltIn
-        {
-            // Empty
-        }
-
-
         [Fact]
         public void NullValue_DescribeMismatch_IncludesWasNull()
         {

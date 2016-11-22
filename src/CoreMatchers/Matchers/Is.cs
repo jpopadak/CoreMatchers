@@ -2,11 +2,11 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class Is : Matcher
+    public class Is<T> : Matcher<T>
     {
-        private readonly Matcher _matcher;
+        private readonly IMatcher<T> _matcher;
 
-        public Is(Matcher matcher)
+        public Is(IMatcher<T> matcher)
         {
             _matcher = matcher;
         }

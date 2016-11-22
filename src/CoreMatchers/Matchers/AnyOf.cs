@@ -4,15 +4,14 @@ using JPopadak.CoreMatchers.Descriptions;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class AnyOf : ShortcutCombinationMatcher
+    public class AnyOf<T> : ShortcutCombinationMatcher<T>
     {
-        public AnyOf(params Matcher[] matchers)
-            : base(matchers)
+        public AnyOf(params IMatcher<T>[] matchers) : base(matchers)
         {
             // Do Nothing
         }
 
-        public AnyOf(IEnumerable<Matcher> matchers)
+        public AnyOf(IEnumerable<IMatcher<T>> matchers)
             : this(matchers.ToArray())
         {
             // Do Nothing
@@ -25,7 +24,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public override bool Matches(object actual)
         {
-            return matches(actual, shortcut: true);
+            return matches(actual, true);
         }
     }
 }
