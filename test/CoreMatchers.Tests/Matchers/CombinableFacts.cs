@@ -5,8 +5,8 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class CombinableFacts
     {
-        private static readonly CombinationMatcher<int> EITHER_3_OR_4 = Either(EqualTo(3)).Or<int>(EqualTo(4));
-        private static readonly CombinationMatcher<int> NOT_3_AND_NOT_4 = Both(Not(EqualTo(3))).And<int>(Not(EqualTo(4)));
+        private static readonly CombinationMatcher<int> EITHER_3_OR_4 = Either(EqualTo(3)).Or(EqualTo(4));
+        private static readonly CombinationMatcher<int> NOT_3_AND_NOT_4 = Both(Not(EqualTo(3))).And(Not(EqualTo(4)));
         
         [Fact]
         public void NullValue_Either_IsNullSafe()
@@ -72,7 +72,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Not3AndNot4And2With2_Both_ReturnsTrue()
         {
             // Given
-            Matcher matcher = NOT_3_AND_NOT_4.And(EqualTo(2));
+            IMatcher<int> matcher = NOT_3_AND_NOT_4.And(EqualTo(2));
             int actual = 2;
 
             // When
@@ -85,7 +85,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Not3AndNot4And2With3_Both_ReturnsFalse()
         {
             // Given
-            Matcher matcher = NOT_3_AND_NOT_4.And(EqualTo(2));
+            IMatcher<int> matcher = NOT_3_AND_NOT_4.And(EqualTo(2));
             int actual = 3;
 
             // When
@@ -98,7 +98,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Not3AndNot4_Both_DescribesItself()
         {
             // Given
-            Matcher matcher = NOT_3_AND_NOT_4;
+            IMatcher<int> matcher = NOT_3_AND_NOT_4;
 
             // When
             TestHelper.AssertDescription("(not <3> and not <4>)", matcher);
@@ -110,7 +110,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Not3AnNot4With3_Both_DescribesMismatch()
         {
             // Given
-            Matcher matcher = NOT_3_AND_NOT_4;
+            IMatcher<int> matcher = NOT_3_AND_NOT_4;
             int actual = 3;
 
             // When
@@ -123,7 +123,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4With3_Either_ReturnsTrue()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4;
+            IMatcher<int> matcher = EITHER_3_OR_4;
             int actual = 3;
 
             // When
@@ -136,7 +136,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4With6_Either_ReturnsFalse()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4;
+            IMatcher<int> matcher = EITHER_3_OR_4;
             int actual = 6;
 
             // When
@@ -149,7 +149,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4Or11With11_Either_ReturnsTrue()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4.Or(EqualTo(11));
+            IMatcher<int> matcher = EITHER_3_OR_4.Or(EqualTo(11));
             int actual = 11;
 
             // When
@@ -162,7 +162,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4Or11With9_Either_ReturnsFalse()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4.Or(EqualTo(11));
+            IMatcher<int> matcher = EITHER_3_OR_4.Or(EqualTo(11));
             int actual = 9;
 
             // When
@@ -175,7 +175,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4_Either_DescribesItself()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4;
+            IMatcher<int> matcher = EITHER_3_OR_4;
 
             // When
             TestHelper.AssertDescription("(<3> or <4>)", matcher);
@@ -187,7 +187,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Num3Or4_Either_DescribesMismatch()
         {
             // Given
-            Matcher matcher = EITHER_3_OR_4;
+            IMatcher<int> matcher = EITHER_3_OR_4;
             int actual = 6;
 
             // When

@@ -1,9 +1,40 @@
-﻿using JPopadak.CoreMatchers.Descriptions;
+﻿using System;
+using System.Reflection;
+using JPopadak.CoreMatchers.Descriptions;
+using JPopadak.CoreMatchers.Internal;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher
+    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher<T>
     {
+        private static readonly ReflectiveTypeFinder TYPE_FINDER = new ReflectiveTypeFinder("matchesSafely", 2, 0);
+        private readonly Type _expectedType;
+
+        /// <summary>
+        /// Use this constructor if the subclass that implements <code>matchesSafely</code>
+        /// is <em>not</em> the class that binds &lt;T&gt; to a type.
+        /// </summary>
+        /// <param name="expectedType"> The expectedType of the actual value. </param>
+        protected TypeSafeDiagnosingMatcher(Type expectedType)
+        {
+            _expectedType = expectedType;
+        }
+
+        /// <summary>
+        /// Use this constructor if the subclass that implements <code>matchesSafely</code>
+        /// is <em>not</em> the class that binds &lt;T&gt; to a type.
+        /// </summary>
+        /// <param name="typeFinder">A type finder to extract the type.</param>
+        protected TypeSafeDiagnosingMatcher(ReflectiveTypeFinder typeFinder)
+        {
+            _expectedType = typeFinder.FindExpectedType(GetType());
+        }
+
+        /// <summary>
+        /// The default constructor for simple sub types.
+        /// </summary>
+        protected TypeSafeDiagnosingMatcher() : this(TYPE_FINDER) {}
+
         /// <summary>
         /// Subclasses should implement this. The item will already have been checked
         /// for the specific type and will never be null.
@@ -17,8 +48,8 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public sealed override bool Matches(object actual)
         {
-            // Cannot use 'as' here due to T not being constrained to Class types
-            if (actual == null || !(actual is T))
+            // Cannot use 'as' here due to _expectedType not being constrained to Class types
+            if (actual == null || !_expectedType.IsInstanceOfType(actual))
             {
                 return false;
             }

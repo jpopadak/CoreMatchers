@@ -203,8 +203,9 @@ namespace JPopadak.CoreMatchers.Matchers
         public void Exc_ContainsIgnoringCase_DescriptionIncludesExpected()
         {
             // When
-            TestHelper.AssertDescription("a string containing \"" + EXCERPT
-                + "\" ignoring case", getIgnoreCaseStringContainsMatcher());
+            TestHelper.AssertDescription(
+                $"a string containing \"{EXCERPT}\" ignoring case",
+                getIgnoreCaseStringContainsMatcher());
 
             // Then - No Exception
         }
@@ -233,12 +234,12 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - Throws verifies throws ArugmentNullException
         }
 
-        private Matcher getStringContainsMatcher()
+        private IMatcher<string> getStringContainsMatcher()
         {
             return Contains(EXCERPT);
         }
 
-        private Matcher getIgnoreCaseStringContainsMatcher()
+        private IMatcher<string> getIgnoreCaseStringContainsMatcher()
         {
             return ContainsIgnoringCase(EXCERPT);
         }

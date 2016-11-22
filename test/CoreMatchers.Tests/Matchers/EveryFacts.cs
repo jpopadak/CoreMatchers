@@ -1,11 +1,12 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
     public class EveryFacts
     {
-        private static Matcher HAS_CHAR_A_MATCHER = EveryItem<string>(Contains("a"));
+        private static readonly IMatcher<IEnumerable<string>> HAS_CHAR_A_MATCHER = EveryItem(Contains("a"));
 
         [Fact]
         public void NullValue_Every_IsNullSafe()

@@ -11,7 +11,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_Is_IsNullSafe()
         {
             // Given
-            Matcher matcher = HasItem<string>(EqualTo("irrelevant"));
+            IMatcher<IEnumerable<string>> matcher = HasItem(EqualTo("irrelevant"));
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -23,7 +23,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void UnknownTypeValue_Is_IsTypeSafe()
         {
             // Given
-            Matcher matcher = HasItem<string>(EqualTo("irrelevant"));
+            IMatcher<IEnumerable<string>> matcher = HasItem(EqualTo("irrelevant"));
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -35,8 +35,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ListOfABC_HasItem_ReturnsTrue()
         {
             // Given
-            List<string> actual = new List<string>() { "a", "b", "c" };
-            Matcher matcher = HasItem<string>(EqualTo("a"));
+            List<string> actual = new List<string> { "a", "b", "c" };
+            IMatcher<IEnumerable<string>> matcher = HasItem(EqualTo("a"));
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -48,8 +48,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ListOfBCWithNoMatch_HasItem_ReturnsFalse()
         {
             // Given
-            List<string> actual = new List<string>() { "b", "c" };
-            Matcher matcher = HasItem<string>(new Mismatchable("a"));
+            List<string> actual = new List<string> { "b", "c" };
+            IMatcher<IEnumerable<string>> matcher = HasItem(new Mismatchable("a"));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -61,8 +61,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ListOfBCWithNoMatch_HasItem_DescribesMismatch()
         {
             // Given
-            List<string> actual = new List<string>() { "b", "c" };
-            Matcher matcher = HasItem<string>(new Mismatchable("a"));
+            List<string> actual = new List<string> { "b", "c" };
+            IMatcher<IEnumerable<string>> matcher = HasItem(new Mismatchable("a"));
 
             // When
             TestHelper.AssertMismatchDescription("mismatches were: [mismatched: b, mismatched: c]", matcher, actual);
@@ -74,8 +74,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void EmptyListWithNoMatch_HasItem_DescribesMismatch()
         {
             // Given
-            List<string> actual = new List<string>() { };
-            Matcher matcher = HasItem<string>(new Mismatchable("a"));
+            List<string> actual = new List<string>();
+            IMatcher<IEnumerable<string>> matcher = HasItem(new Mismatchable("a"));
 
             // When
             TestHelper.AssertMismatchDescription("was empty", matcher, actual);
@@ -87,7 +87,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_HasItem_ReturnsFalse()
         {
             // Given
-            Matcher matcher = HasItem<string>(EqualTo("a"));
+            IMatcher<IEnumerable<string>> matcher = HasItem(EqualTo("a"));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, null);
@@ -99,7 +99,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void CollectionOfMismatchable_HasItem_ShowsReadableDescription()
         {
             // Given
-            Matcher matcher = HasItem<string>(new Mismatchable("a"));
+            IMatcher<IEnumerable<string>> matcher = HasItem(new Mismatchable("a"));
 
             // When
             TestHelper.AssertDescription("an enumerable containing mismatchable: a", matcher);
@@ -111,8 +111,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void CollectinHoldingSuperclass_HasItem_ReturnsTrue()
         {
             // Given.
-            HashSet<SampleBaseClass> hashSet = new HashSet<SampleBaseClass>() { new SampleBaseClass("value") };
-            Matcher matcher = HasItem<SampleBaseClass>(EqualTo(new SampleSubClass("value")));
+            HashSet<SampleBaseClass> hashSet = new HashSet<SampleBaseClass> { new SampleBaseClass("value") };
+            IMatcher<IEnumerable<SampleBaseClass>> matcher = HasItem<SampleBaseClass>(EqualTo(new SampleSubClass("value")));
 
             // When
             TestHelper.AssertMatches(matcher, hashSet);

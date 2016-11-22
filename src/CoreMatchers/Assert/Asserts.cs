@@ -6,12 +6,12 @@ namespace JPopadak.CoreMatchers
 {
     public static class Asserts
     {
-        public static void That<T>(T actual, Matcher matcher)
+        public static void That<T>(T actual, IMatcher<T> matcher)
         {
             That(string.Empty, actual, matcher);
         }
         
-        public static void That<T>(string message, T actual, Matcher matcher)
+        public static void That<T>(string message, T actual, IMatcher<T> matcher)
         {
             if (!matcher.Matches(actual))
             {
