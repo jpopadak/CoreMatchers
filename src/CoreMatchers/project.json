@@ -1,5 +1,5 @@
 {
-  "authors": [ "Jim Popadak" ],
+  "authors": [ "Jim Popadak", "Bryan Herman" ],
   "configurations": {
     "Debug": {
       "buildOptions": {
