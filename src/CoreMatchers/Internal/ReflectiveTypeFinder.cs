@@ -40,7 +40,7 @@ namespace JPopadak.CoreMatchers.Internal
 
         public Type FindExpectedType(Type fromType)
         {
-            for (Type t = fromType; t != typeof(object); t = t.DeclaringType)
+            for (Type t = fromType; t != typeof(object); t = t.GetTypeInfo().BaseType)
             {
                 foreach (MethodInfo method in t.GetMethods())
                 {
