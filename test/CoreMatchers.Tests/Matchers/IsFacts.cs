@@ -9,8 +9,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_Is_IsNullSafe()
         {
             // Given
-            string actual = "actual";
-            Matcher matcher = Is(actual);
+            string expected = "expected";
+            IMatcher<string> matcher = Is(expected);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -22,8 +22,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void UnknownTypeValue_Is_IsTypeSafe()
         {
             // Given
-            string actual = "actual";
-            Matcher matcher = Is(actual);
+            string expected = "expected";
+            IMatcher<string> matcher = Is(expected);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -35,8 +35,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TrueValue_IsEqualTo_ReturnsTrueAndIsMatchesSameBehaviorAsIsEqualTo()
         {
             // Given
-            bool actual = true;
-            Matcher matcher = new Is(new IsEqual(actual));
+            bool expected = true;
+            IMatcher<bool> matcher = Is(EqualTo(expected));
 
             // When
             TestHelper.AssertMatches(matcher, true);
@@ -48,8 +48,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TrueMatcherFalseValue_IsEqualTo_ReturnsFalseAndIsMatchesSameBehaviorAsIsEqualTo()
         {
             // Given
-            bool actual = true;
-            Matcher matcher = new Is(new IsEqual(actual));
+            bool expected = true;
+            IMatcher<bool> matcher = Is(EqualTo(expected));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, false);
@@ -61,8 +61,8 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TrueExpectedAndActual_IsEqualTo_DescriptionHasIsInIt()
         {
             // Given
-            bool actual = true;
-            Matcher matcher = new Is(new IsEqual(actual));
+            bool expected = true;
+            IMatcher<bool> matcher = Is(EqualTo(expected));
 
             // When
             TestHelper.AssertDescription("is <True>", matcher);
@@ -75,7 +75,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             char expected = 'A';
-            Matcher matcher = Is(expected);
+            IMatcher<char> matcher = Is(expected);
 
             // When
             TestHelper.AssertDescription("is \"A\"", matcher);

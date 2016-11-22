@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers
@@ -10,7 +11,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher matcher = Not(actual);
+            IMatcher<string> matcher = Not(actual);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -23,7 +24,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher matcher = Not(actual);
+            IMatcher<string> matcher = Not(actual);
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -37,7 +38,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Given
             string actual = "value";
             string expected = "ASDF";
-            Matcher matcher = Not(expected);
+            IMatcher<string> matcher = Not(expected);
 
             // When
             TestHelper.AssertMatches(matcher, actual);
@@ -50,7 +51,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher matcher = Not(actual);
+            IMatcher<string> matcher = Not(actual);
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, actual);
@@ -63,7 +64,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             // Given
             string actual = "value";
-            Matcher matcher = Not(actual);
+            IMatcher<string> matcher = Not(actual);
 
             // When
             TestHelper.AssertDescription("not \"value\"", matcher);
@@ -75,7 +76,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void InstanceOf_NotInstanceOf_NegatedInstanceDescription()
         {
             // Given
-            Matcher matcher = Not(InstanceOf(typeof(string)));
+            IMatcher<Type> matcher = Not(InstanceOf(typeof(string)));
 
             // When
             TestHelper.AssertDescription("not an instance of System.String", matcher);
