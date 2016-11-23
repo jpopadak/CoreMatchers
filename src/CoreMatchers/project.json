@@ -3,7 +3,7 @@
   "configurations": {
     "Debug": {
       "buildOptions": {
-        "debugType": "full",
+        "debugType": "portable",
         "define": [ "DEBUG", "TRACE" ],
         "warningsAsErrors": true
       }
