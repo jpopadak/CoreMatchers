@@ -18,8 +18,8 @@
     }
   },
   "dependencies": {
-    "NETStandard.Library": "1.6.1-preview1-24530-04",
-    "System.Reflection.TypeExtensions": "4.3.0-preview1-24530-04"
+    "NETStandard.Library": "1.6.1",
+    "System.Reflection.TypeExtensions": "4.3.0"
   },
   "description": "An implementation of assertion matchers for testing.",
   "frameworks": {
@@ -35,9 +35,9 @@
       "type": "git",
       "url": "https://github.com/jpopadak/CoreMatchers"
     },
-    "summary": "An implementation of assertion matchers for testing.",
     "requireLicenseAcceptance": false,
-    "tags": [ ".NET", "DNX", "Core", "Matchers", "Test", "Hamcrest" ]
+    "summary": "An implementation of assertion matchers for testing.",
+    "tags": [ ".NET", "DNX", "Core", "Matchers", "Standard", "NetStandard", ".NET Standard", "Test", "Hamcrest" ]
   },
   "version": "1.0.0-*"
 }
