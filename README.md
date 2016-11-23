@@ -3,3 +3,4 @@ Master: [![Build status](https://ci.appveyor.com/api/projects/status/nk660hqrgct
 # CoreMatchers
 An implementation of assertion matchers for testing. Similar to other test matchers for Java
 
+testing
