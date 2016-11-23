@@ -39,7 +39,10 @@ cache:
 # Slack notification
 notifications:
 - provider: Slack
-  incoming_webhook: https://hooks.slack.com/services/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 
+  incoming_webhook: https://hooks.slack.com/services/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
+  on_build_failure: true
+  on_build_success: false
+  on_build_status_changed: true
 
 # Publish the nuget package to AppVeyors account and project feeds
 nuget:
