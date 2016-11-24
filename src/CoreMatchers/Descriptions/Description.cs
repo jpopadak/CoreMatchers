@@ -19,6 +19,16 @@ namespace JPopadak.CoreMatchers.Descriptions
             return appendList(before, separator, after, args);
         }
 
+        public IDescription AppendList(string before, string separator, string after, IEnumerable<IDescribable> args)
+        {
+            return appendList(before, separator, after, args);
+        }
+
+        public IDescription AppendValueList<T>(string start, string separator, string end, IEnumerable<T> values)
+        {
+            return AppendList(start, separator, end, new SelfDescribingValueEnumerable<T>(values));
+        }
+
         public IDescription AppendValue(object value)
         {
             if (value == null)
@@ -83,7 +93,7 @@ namespace JPopadak.CoreMatchers.Descriptions
             return builder.ToString();
         }
 
-        private IDescription appendList(String start, String separator, String end, params IDescribable[] describables)
+        private IDescription appendList(string start, string separator, string end, IEnumerable<IDescribable> describables)
         {
             bool separate = false;
 

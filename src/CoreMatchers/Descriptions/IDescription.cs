@@ -1,10 +1,14 @@
-﻿namespace JPopadak.CoreMatchers.Descriptions
+﻿using System.Collections.Generic;
+
+namespace JPopadak.CoreMatchers.Descriptions
 {
     public interface IDescription
     {
         IDescription AppendText(string text);
 
         IDescription AppendList(string before, string separator, string after, params IDescribable[] args);
+        
+        IDescription AppendValueList<T>(string start, string separator, string end, IEnumerable<T> values);
 
         IDescription AppendValue(object value);
 
