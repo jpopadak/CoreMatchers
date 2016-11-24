@@ -2,11 +2,10 @@
 using JPopadak.StandardMatchers.Matchers;
 using System;
 using System.Collections.Generic;
-using JPopadak.CoreMatchers.Matchers;
-using JPopadak.StandardMatchers.Matchers.Collections;
-using static JPopadak.CoreMatchers.Matchers.Matchers;
 using System.Linq;
 using System.Threading.Tasks;
+using JPopadak.StandardMatchers.Matchers.Collections;
+using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.StandardMatchers.Matchers
 {
