@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class Matcher : IMatcher
+    public abstract class Matcher<T> : IMatcher<T>
     {
         public abstract void Describe(IDescription description);
 

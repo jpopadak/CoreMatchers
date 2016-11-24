@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsAnything : Matcher
+    public class IsAnything<T> : Matcher<T>
     {
         private readonly string _message;
 

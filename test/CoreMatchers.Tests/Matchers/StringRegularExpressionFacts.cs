@@ -52,7 +52,7 @@ namespace JPopadak.CoreMatchers.Matchers
             // Then - No Exception
         }
 
-        private Matcher getRegexMatcher()
+        private IMatcher<string> getRegexMatcher()
         {
             return MatchesRegex(PATTERN);
         }

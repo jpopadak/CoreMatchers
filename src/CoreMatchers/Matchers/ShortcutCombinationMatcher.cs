@@ -2,18 +2,18 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class ShortcutCombinationMatcher : Matcher
+    public abstract class ShortcutCombinationMatcher<T> : Matcher<T>
     {
-        private readonly Matcher[] _matchers;
+        private readonly IMatcher<T>[] _matchers;
 
-        protected ShortcutCombinationMatcher(params Matcher[] matchers)
+        protected ShortcutCombinationMatcher(params IMatcher<T>[] matchers)
         {
             _matchers = matchers;
         }
 
         protected bool matches(object value, bool shortcut)
         {
-            foreach (Matcher matcher in _matchers)
+            foreach (IMatcher<T> matcher in _matchers)
             {
                 if (matcher.Matches(value) == shortcut)
                 {

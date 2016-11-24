@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "CoreMatchers": {
+    "CoreMatchers.Tests": {
       "target": "project"
     },
     "dotnet-test-xunit": "2.2.0-preview2-build1029",

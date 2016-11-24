@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsSame : Matcher
+    public class IsSame<T> : Matcher<T>
     {
         private readonly object _value;
 

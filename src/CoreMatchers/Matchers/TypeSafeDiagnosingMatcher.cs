@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher
+    public abstract class TypeSafeDiagnosingMatcher<T> : Matcher<T>
     {
         /// <summary>
         /// Subclasses should implement this. The item will already have been checked
@@ -17,7 +17,7 @@ namespace JPopadak.CoreMatchers.Matchers
         /// </summary>
         public sealed override bool Matches(object actual)
         {
-            // Cannot use 'as' here due to T not being constrained to Class types
+            // Cannot use 'as' here due to _expectedType not being constrained to Class types
             if (actual == null || !(actual is T))
             {
                 return false;
