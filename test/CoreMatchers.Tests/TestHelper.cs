@@ -8,7 +8,9 @@ namespace JPopadak.CoreMatchers
     {
         public static void AssertMatches<T>(IMatcher<T> matcher, object arg)
         {
-            AssertMatches("Expected match, but mismatched", matcher, arg);
+            IDescription matcherDescription = new Description();
+            matcher.Describe(matcherDescription);
+            AssertMatches($"Expected {matcherDescription}, but mismatched", matcher, arg);
         }
 
         public static void AssertMatches<T>(string message, IMatcher<T> matcher, object arg)
