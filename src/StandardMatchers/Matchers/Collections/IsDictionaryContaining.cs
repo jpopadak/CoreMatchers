@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JPopadak.CoreMatchers.Descriptions;
+using JPopadak.CoreMatchers.Matchers;
 
-namespace JPopadak.CoreMatchers.Matchers
+namespace JPopadak.StandardMatchers.Matchers.Collections
 {
     public class IsDictionaryContaining<TKey, TValue> : TypeSafeMatcher<IDictionary<TKey, TValue>>
     {
