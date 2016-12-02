@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using JPopadak.CoreMatchers;
+using JPopadak.CoreMatchers.Matchers;
 using Xunit;
 using static JPopadak.StandardMatchers.Matchers.Matchers;
 
-namespace JPopadak.CoreMatchers.Matchers
+namespace JPopadak.StandardMatchers.Matchers.Collections
 {
     public class IsEmptyEnumerableFacts
     {

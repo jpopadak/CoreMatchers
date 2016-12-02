@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using JPopadak.CoreMatchers.Matchers;
 
-namespace JPopadak.CoreMatchers.Matchers
+namespace JPopadak.StandardMatchers.Matchers.Collections
 {
     public class IsDictionaryWithSize<TKey, TValue> : FeatureMatcher<IDictionary<TKey, TValue>, int>
     {
