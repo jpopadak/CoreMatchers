@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Xunit;
 using static JPopadak.StandardMatchers.Matchers.Matchers;
 
@@ -83,7 +80,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         private List<object> populatedList()
         {
-            return new List<object>() {
+            return new List<object> {
                 new object(),
                 new object(),
                 new object(),

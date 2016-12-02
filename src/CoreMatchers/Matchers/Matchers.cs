@@ -394,21 +394,5 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             return new StringRegularExpression(value);
         }
-
-        /// <summary>
-        /// Creates a matcher that matches the dictionary's size against the given matcher.
-        /// </summary>
-        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
-        {
-            return new IsDictionaryWithSize<TKey, TValue>(sizeMatcher);
-        }
-
-        /// <summary>
-        /// Creates a matcher that matches the dictionary's size against the given size.
-        /// </summary>
-        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(int size)
-        {
-            return new IsDictionaryWithSize<TKey, TValue>(new IsEqual<int>(size));
-        }
     }
 }

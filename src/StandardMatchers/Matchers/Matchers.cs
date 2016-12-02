@@ -8,6 +8,22 @@ namespace JPopadak.StandardMatchers.Matchers
     public static class Matchers
     {
         /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given matcher.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given size.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(int size)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(new IsEqual<int>(size));
+        }
+
+        /// <summary>
         /// Creates a matcher for IDictionarys matching when the examined IDictionary contains at least one entry
         /// whose key satisfies the specified keyMatcher <b>and</b> whose value satisfies the specified valueMatcher.
         /// For example:
