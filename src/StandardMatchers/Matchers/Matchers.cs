@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
@@ -7,6 +7,22 @@ namespace JPopadak.StandardMatchers.Matchers
 {
     public static class Matchers
     {
+        /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given matcher.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given size.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> IsDictionaryWithSize<TKey, TValue>(int size)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(new IsEqual<int>(size));
+        }
+
         /// <summary>
         /// Creates a matcher for IDictionarys matching when the examined IDictionary contains at least one entry
         /// whose key satisfies the specified keyMatcher <b>and</b> whose value satisfies the specified valueMatcher.
@@ -81,6 +97,17 @@ namespace JPopadak.StandardMatchers.Matchers
         public static Matcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), EqualTo(value));
+        }
+
+        /// <summary>
+        /// Creates a matcher for Iterables matching examined
+        /// iterables that yield no items.
+        /// For example:
+        /// <code>Assert.That(new List&lt;String&gt;(), Is(EmptyEnumerable()))</code>
+        /// </summary>
+        public static IMatcher<IEnumerable<T>> EmptyEnumerable<T>()
+        {
+            return new IsEmptyEnumerable<T>();
         }
     }
 }

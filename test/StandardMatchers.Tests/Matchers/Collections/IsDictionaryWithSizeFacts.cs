@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
+using static JPopadak.StandardMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
