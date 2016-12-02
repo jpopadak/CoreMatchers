@@ -6,11 +6,11 @@ namespace JPopadak.CoreMatchers.Descriptions
 {
     public class Description : IDescription
     {
-        private StringBuilder builder = new StringBuilder();
+        private readonly StringBuilder _builder = new StringBuilder();
 
         public IDescription AppendText(string text)
         {
-            append(text);
+            Append(text);
             return this;
         }
 
@@ -41,27 +41,27 @@ namespace JPopadak.CoreMatchers.Descriptions
             }
             else if (value is char)
             {
-                append('"');
+                Append('"');
                 escapeValue((char)value);
-                append('"');
+                Append('"');
             }
             else if (value is short)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("s>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("s>");
             }
             else if (value is long)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("L>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("L>");
             }
             else if (value is float)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("F>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("F>");
             }
             else
             {
@@ -78,46 +78,46 @@ namespace JPopadak.CoreMatchers.Descriptions
             return this;
         }
 
-        protected void append(string value)
+        protected void Append(string value)
         {
-            builder.Append(value);
+            _builder.Append(value);
         }
 
-        protected void append(char value)
+        protected void Append(char value)
         {
-            builder.Append(value);
+            _builder.Append(value);
         }
 
         public override string ToString()
         {
-            return builder.ToString();
+            return _builder.ToString();
         }
 
         private IDescription appendList(string start, string separator, string end, IEnumerable<IDescribable> describables)
         {
             bool separate = false;
 
-            append(start);
+            Append(start);
             foreach (IDescribable describable in describables)
             {
                 if (separate)
                 {
-                    append(separator);
+                    Append(separator);
                 }
                 AppendDescribable(describable);
 
                 separate = true;
             }
 
-            append(end);
+            Append(end);
             return this;
         }
 
         private void escapeValue(string value)
         {
-            append('"');
+            Append('"');
             forEach(value, escapeValue);
-            append('"');
+            Append('"');
         }
 
         /// <summary>
@@ -128,22 +128,22 @@ namespace JPopadak.CoreMatchers.Descriptions
             switch (value)
             {
                 case '"':
-                    append("\\\"");
+                    Append("\\\"");
                     break;
                 case '\n':
-                    append("\\n");
+                    Append("\\n");
                     break;
                 case '\r':
-                    append("\\r");
+                    Append("\\r");
                     break;
                 case '\t':
-                    append("\\t");
+                    Append("\\t");
                     break;
                 case '\\':
-                    append("\\\\");
+                    Append("\\\\");
                     break;
                 default:
-                    append(value);
+                    Append(value);
                     break;
             }
         }
