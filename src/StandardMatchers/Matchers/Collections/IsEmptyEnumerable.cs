@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using JPopadak.CoreMatchers.Descriptions;
 
-namespace JPopadak.StandardMatchers.Matchers
+namespace JPopadak.StandardMatchers.Matchers.Collections
 {
     public class IsEmptyEnumerable<T> : TypeSafeMatcher<IEnumerable<T>>
     {
@@ -10,7 +10,7 @@ namespace JPopadak.StandardMatchers.Matchers
         {
             using (IEnumerator<T> enumerator = item.GetEnumerator())
             {
-                return !(enumerator.MoveNext());
+                return !enumerator.MoveNext();
             }
         }
 
