@@ -79,13 +79,15 @@ namespace JPopadak.CoreMatchers.Matchers
         }
 
         [Fact]
-        public void ExpectedAndActualAre0_IsDictionaryWithSize_DescriptionIsCorrect()
+        public void ExpectedIs0_IsDictionaryWithSize_DescriptionIsCorrect()
         {
             // Given
             IMatcher<IDictionary<string, string>> matcher = getMatcher(0);
 
             // When
             TestHelper.AssertDescription("a dictionary with size <0>", matcher);
+
+            // Then - No Exception
         }
 
         private IMatcher<IDictionary<string, string>> getMatcher(int size)
