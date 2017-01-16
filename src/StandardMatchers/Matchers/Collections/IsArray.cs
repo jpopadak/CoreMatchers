@@ -9,20 +9,33 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
     {
         private readonly IMatcher<T>[] _elementMatchers;
 
-        public IsArray(IMatcher<T>[] elementMatchers)
+        public IsArray(params IMatcher<T>[] elementMatchers)
         {
             _elementMatchers = new IMatcher<T>[elementMatchers.Length];
             Array.Copy(elementMatchers, _elementMatchers, elementMatchers.Length);
         }
 
-        protected override bool MatchesSafely(T[] items)
+        protected override bool MatchesSafely(T[] actualItems)
         {
-            if (_elementMatchers.Length != items.Length)
+            if (_elementMatchers.Length != actualItems.Length)
             {
                 return false;
             }
 
-            return !_elementMatchers.Where((t, i) => !t.Matches(items[i])).Any();
+            for (var i = 0; i < _elementMatchers.Length; ++i)
+            {
+                if (_elementMatchers[i].Matches(actualItems[i]))
+                {
+                    // If it matches, continue
+                    continue;
+                }
+
+                // If it doesnt match, write out why
+                return false;
+            }
+
+            // All matched properly
+            return true;
         }
 
         protected override void DescribeMismatchSafely(T[] actualItems, IDescription mismatchDescription)

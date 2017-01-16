@@ -16,7 +16,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </p>
         /// </summary>
         /// <param name="matchers">The matchers that the elements of examined arrays should satisfy</param>
-        public static IsArray<T> Array<T>(IMatcher<T>[] matchers)
+        public static IsArray<T> Array<T>(params IMatcher<T>[] matchers)
         {
             return new IsArray<T>(matchers);
         }
