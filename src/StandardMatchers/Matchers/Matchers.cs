@@ -24,6 +24,41 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher for Iterables matching examined
+        /// iterables that yield no items.
+        /// For example:
+        /// <code>Assert.That(new List&lt;String&gt;(), Is(EmptyEnumerable()))</code>
+        /// </summary>
+        public static IMatcher<IEnumerable<T>> EmptyEnumerable<T>()
+        {
+            return new IsEmptyEnumerable<T>();
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
+        /// an item count that satisifes the specified matcher.
+        /// For example:
+        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(EqualTo(2)))</code>
+        /// </summary>
+        /// <param name="sizeMatcher">A matcher for the number of items that should be yielded by an examined IEnumerable.</param>
+        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(IMatcher<int> sizeMatcher)
+        {
+            return new IsEnumerableWithSize<T>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
+        /// an item count that is equal to the specified size argument.
+        /// For example:
+        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(2))</code>
+        /// </summary>
+        /// <param name="size">The number of items that should be yielded by an examined IEnumerable.</param>
+        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(int size)
+        {
+            return new IsEnumerableWithSize<T>(EqualTo(size));
+        }
+
+        /// <summary>
         /// Creates a matcher for IDictionarys matching when the examined IDictionary contains at least one entry
         /// whose key satisfies the specified keyMatcher <b>and</b> whose value satisfies the specified valueMatcher.
         /// For example:
@@ -97,41 +132,6 @@ namespace JPopadak.StandardMatchers.Matchers
         public static Matcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), EqualTo(value));
-        }
-
-        /// <summary>
-        /// Creates a matcher for Iterables matching examined
-        /// iterables that yield no items.
-        /// For example:
-        /// <code>Assert.That(new List&lt;String&gt;(), Is(EmptyEnumerable()))</code>
-        /// </summary>
-        public static IMatcher<IEnumerable<T>> EmptyEnumerable<T>()
-        {
-            return new IsEmptyEnumerable<T>();
-        }
-
-        /// <summary>
-        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
-        /// an item count that satisifes the specified matcher.
-        /// For example:
-        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(EqualTo(2)))</code>
-        /// </summary>
-        /// <param name="sizeMatcher">A matcher for the number of items that should be yielded by an examined IEnumerable.</param>
-        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(IMatcher<int> sizeMatcher)
-        {
-            return new IsEnumerableWithSize<T>(sizeMatcher);
-        }
-
-        /// <summary>
-        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
-        /// an item count that is equal to the specified size argument.
-        /// For example:
-        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(2))</code>
-        /// </summary>
-        /// <param name="size">The number of items that should be yielded by an examined IEnumerable.</param>
-        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(int size)
-        {
-            return new IsEnumerableWithSize<T>(EqualTo(size));
         }
     }
 }
