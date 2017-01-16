@@ -9,7 +9,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_AnyOf_IsNullSafe()
         {
             // Given
-            Matcher matcher = AnyOf(EqualTo("irrelevant"), StartsWith("irr"));
+            IMatcher<string> matcher = AnyOf(EqualTo("irrelevant"), StartsWith("irr"));
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -21,7 +21,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void UnknownType_AnyOf_IsUnknownTypeSafe()
         {
             // Given
-            Matcher matcher = AnyOf(EqualTo("irrelevant"), StartsWith("irr"));
+            IMatcher<string> matcher = AnyOf(EqualTo("irrelevant"), StartsWith("irr"));
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -33,7 +33,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestGoodWithStartsWithGooEndsWithOod_AnyOf_ReturnsTrue()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
+            IMatcher<string> matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
 
             // When
             TestHelper.AssertMatches(matcher, "good");
@@ -45,7 +45,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestMoodWithStartsWithGooEndsWithOod_AnyOf_ReturnsTrue()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
+            IMatcher<string> matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
 
             // When
             TestHelper.AssertMatches(matcher, "mood");
@@ -57,7 +57,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestGoonWithStartsWithGooEndsWithOod_AnyOf_ReturnsTrue()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
+            IMatcher<string> matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
 
             // When
             TestHelper.AssertMatches(matcher, "goon");
@@ -69,7 +69,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestFlanWithStartsWithGooEndsWithOod_AnyOf_ReturnsFalse()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
+            IMatcher<string> matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, "flan");
@@ -81,7 +81,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestVlad_AnyOf_ReturnsFalse()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
+            IMatcher<string> matcher = AnyOf(StartsWith("goo"), EndsWith("ood"));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, "flan");
@@ -93,7 +93,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestVladManyMatchers_AnyOf_ReturnsTrue()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("g"), StartsWith("go"), EndsWith("d"), StartsWith("go"), StartsWith("goo"));
+            IMatcher<string> matcher = AnyOf(StartsWith("g"), StartsWith("go"), EndsWith("d"), StartsWith("go"), StartsWith("goo"));
 
             // When
             TestHelper.AssertMatches(matcher, "vlad");
@@ -105,7 +105,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void TestFlanManyMatchers_AnyOf_ReturnsFalse()
         {
             // Given
-            Matcher matcher = AnyOf(StartsWith("g"), StartsWith("go"), EndsWith("d"), StartsWith("go"), StartsWith("goo"));
+            IMatcher<string> matcher = AnyOf(StartsWith("g"), StartsWith("go"), EndsWith("d"), StartsWith("go"), StartsWith("goo"));
 
             // When
             TestHelper.AssertDoesNotMatch(matcher, "flan");
@@ -117,7 +117,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void MixedMatcherTypes_AnyOf_ReturnsTrue()
         {
             // Given
-            Matcher matcher = AnyOf(
+            IMatcher<SampleBaseClass> matcher = AnyOf(
                 EqualTo(new SampleBaseClass("bad")),
                 EqualTo(new SampleBaseClass("good")),
                 EqualTo(new SampleSubClass("ugly")));
@@ -132,7 +132,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void MultipleMatchers_AnyOf_HasReadableDescription()
         {
             // Given
-            Matcher matcher = AnyOf(
+            IMatcher<string> matcher = AnyOf(
                 EqualTo("good"),
                 EqualTo("bad"),
                 EqualTo("ugly"));

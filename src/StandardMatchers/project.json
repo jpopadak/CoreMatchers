@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "CoreMatchers": {
+      "target": "project"
+    },
+    "NETStandard.Library": "1.6.1"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+  "version": "1.0.0-*"
+}

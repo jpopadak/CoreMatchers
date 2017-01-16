@@ -2,7 +2,7 @@
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public abstract class TypeSafeMatcher<T> : Matcher
+    public abstract class TypeSafeMatcher<T> : Matcher<T>
     {
         /// <summary>
         /// Subclasses should implement this. The item will already have been checked for

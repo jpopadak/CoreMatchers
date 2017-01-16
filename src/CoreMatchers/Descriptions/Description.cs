@@ -6,17 +6,27 @@ namespace JPopadak.CoreMatchers.Descriptions
 {
     public class Description : IDescription
     {
-        private StringBuilder builder = new StringBuilder();
+        private readonly StringBuilder _builder = new StringBuilder();
 
         public IDescription AppendText(string text)
         {
-            append(text);
+            Append(text);
             return this;
         }
 
         public IDescription AppendList(string before, string separator, string after, params IDescribable[] args)
         {
-            return appendList(before, separator, after, args);
+            return _AppendList(before, separator, after, args);
+        }
+
+        public IDescription AppendList(string before, string separator, string after, IEnumerable<IDescribable> args)
+        {
+            return _AppendList(before, separator, after, args);
+        }
+
+        public IDescription AppendValueList<T>(string start, string separator, string end, IEnumerable<T> values)
+        {
+            return _AppendList(start, separator, end, new SelfDescribingValueEnumerable<T>(values));
         }
 
         public IDescription AppendValue(object value)
@@ -27,31 +37,31 @@ namespace JPopadak.CoreMatchers.Descriptions
             }
             else if (value is string)
             {
-                escapeValue((string)value);
+                EscapeValue((string)value);
             }
             else if (value is char)
             {
-                append('"');
-                escapeValue((char)value);
-                append('"');
+                Append('"');
+                EscapeValue((char)value);
+                Append('"');
             }
             else if (value is short)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("s>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("s>");
             }
             else if (value is long)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("L>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("L>");
             }
             else if (value is float)
             {
-                append("<");
-                append(Convert.ToString(value));
-                append("F>");
+                Append("<");
+                Append(Convert.ToString(value));
+                Append("F>");
             }
             else
             {
@@ -68,79 +78,79 @@ namespace JPopadak.CoreMatchers.Descriptions
             return this;
         }
 
-        protected void append(string value)
+        protected void Append(string value)
         {
-            builder.Append(value);
+            _builder.Append(value);
         }
 
-        protected void append(char value)
+        protected void Append(char value)
         {
-            builder.Append(value);
+            _builder.Append(value);
         }
 
         public override string ToString()
         {
-            return builder.ToString();
+            return _builder.ToString();
         }
 
-        private IDescription appendList(String start, String separator, String end, params IDescribable[] describables)
+        private IDescription _AppendList(string start, string separator, string end, IEnumerable<IDescribable> describables)
         {
             bool separate = false;
 
-            append(start);
-            foreach (IDescribable describable in describables)
+            Append(start);
+            foreach (var describable in describables)
             {
                 if (separate)
                 {
-                    append(separator);
+                    Append(separator);
                 }
                 AppendDescribable(describable);
 
                 separate = true;
             }
 
-            append(end);
+            Append(end);
             return this;
         }
 
-        private void escapeValue(string value)
+        private void EscapeValue(string value)
         {
-            append('"');
-            forEach(value, escapeValue);
-            append('"');
+            Append('"');
+            ForEach(value, EscapeValue);
+            Append('"');
         }
 
         /// <summary>
         /// Outputs to buffer a escaped version of special chars
         /// </summary>
-        private void escapeValue(char value)
+        private void EscapeValue(char value)
         {
             switch (value)
             {
                 case '"':
-                    append("\\\"");
+                    Append("\\\"");
                     break;
                 case '\n':
-                    append("\\n");
+                    Append("\\n");
                     break;
                 case '\r':
-                    append("\\r");
+                    Append("\\r");
                     break;
                 case '\t':
-                    append("\\t");
+                    Append("\\t");
                     break;
                 case '\\':
-                    append("\\\\");
+                    Append("\\\\");
                     break;
                 default:
-                    append(value);
+                    Append(value);
                     break;
             }
         }
 
-        private void forEach<T>(IEnumerable<T> enumerable, Action<T> function)
+        private void ForEach<T>(IEnumerable<T> enumerable, Action<T> function)
         {
-            foreach (T value in enumerable)
+            foreach (var value in enumerable)
             {
                 function(value);
             }

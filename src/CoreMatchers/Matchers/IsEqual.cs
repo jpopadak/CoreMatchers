@@ -4,11 +4,11 @@ using System.Collections;
 
 namespace JPopadak.CoreMatchers.Matchers
 {
-    public class IsEqual : Matcher
+    public class IsEqual<T> : Matcher<T>
     {
-        private readonly object _expectedValue;
+        private readonly T _expectedValue;
 
-        public IsEqual(object expectedValue)
+        public IsEqual(T expectedValue)
         {
             _expectedValue = expectedValue;
         }
