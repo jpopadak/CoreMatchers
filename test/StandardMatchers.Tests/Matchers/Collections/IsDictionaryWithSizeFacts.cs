@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using JPopadak.CoreMatchers;
+using JPopadak.CoreMatchers.Matchers;
 using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
+using static JPopadak.StandardMatchers.Matchers.Matchers;
 
-namespace JPopadak.CoreMatchers.Matchers
+namespace JPopadak.StandardMatchers.Matchers.Collections
 {
     public class IsDictionaryWithSizeFacts
     {
@@ -10,7 +13,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void NullValue_IsDictionaryWithSize_IsNullSafe()
         {
             // Given
-            IMatcher<IDictionary<string, string>> matcher = IsDictionaryWithSize<string, string>(1);
+            IMatcher<IDictionary<string, string>> matcher = DictionaryWithSize<string, string>(1);
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -92,12 +95,12 @@ namespace JPopadak.CoreMatchers.Matchers
 
         private IMatcher<IDictionary<string, string>> getMatcher(int size)
         {
-            return IsDictionaryWithSize<string, string>(size);
+            return DictionaryWithSize<string, string>(size);
         }
 
         private IMatcher<IDictionary<string, string>> getMatcher(IMatcher<int> sizeMatcher)
         {
-            return IsDictionaryWithSize<string, string>(sizeMatcher);
+            return DictionaryWithSize<string, string>(sizeMatcher);
         }
 
         private IDictionary<string, string> getEmptyDictionary()

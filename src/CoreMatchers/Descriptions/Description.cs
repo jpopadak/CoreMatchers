@@ -16,17 +16,17 @@ namespace JPopadak.CoreMatchers.Descriptions
 
         public IDescription AppendList(string before, string separator, string after, params IDescribable[] args)
         {
-            return appendList(before, separator, after, args);
+            return _AppendList(before, separator, after, args);
         }
 
         public IDescription AppendList(string before, string separator, string after, IEnumerable<IDescribable> args)
         {
-            return appendList(before, separator, after, args);
+            return _AppendList(before, separator, after, args);
         }
 
         public IDescription AppendValueList<T>(string start, string separator, string end, IEnumerable<T> values)
         {
-            return AppendList(start, separator, end, new SelfDescribingValueEnumerable<T>(values));
+            return _AppendList(start, separator, end, new SelfDescribingValueEnumerable<T>(values));
         }
 
         public IDescription AppendValue(object value)
@@ -37,12 +37,12 @@ namespace JPopadak.CoreMatchers.Descriptions
             }
             else if (value is string)
             {
-                escapeValue((string)value);
+                EscapeValue((string)value);
             }
             else if (value is char)
             {
                 Append('"');
-                escapeValue((char)value);
+                EscapeValue((char)value);
                 Append('"');
             }
             else if (value is short)
@@ -93,12 +93,12 @@ namespace JPopadak.CoreMatchers.Descriptions
             return _builder.ToString();
         }
 
-        private IDescription appendList(string start, string separator, string end, IEnumerable<IDescribable> describables)
+        private IDescription _AppendList(string start, string separator, string end, IEnumerable<IDescribable> describables)
         {
             bool separate = false;
 
             Append(start);
-            foreach (IDescribable describable in describables)
+            foreach (var describable in describables)
             {
                 if (separate)
                 {
@@ -113,17 +113,17 @@ namespace JPopadak.CoreMatchers.Descriptions
             return this;
         }
 
-        private void escapeValue(string value)
+        private void EscapeValue(string value)
         {
             Append('"');
-            forEach(value, escapeValue);
+            ForEach(value, EscapeValue);
             Append('"');
         }
 
         /// <summary>
         /// Outputs to buffer a escaped version of special chars
         /// </summary>
-        private void escapeValue(char value)
+        private void EscapeValue(char value)
         {
             switch (value)
             {
@@ -148,9 +148,9 @@ namespace JPopadak.CoreMatchers.Descriptions
             }
         }
 
-        private void forEach<T>(IEnumerable<T> enumerable, Action<T> function)
+        private void ForEach<T>(IEnumerable<T> enumerable, Action<T> function)
         {
-            foreach (T value in enumerable)
+            foreach (var value in enumerable)
             {
                 function(value);
             }

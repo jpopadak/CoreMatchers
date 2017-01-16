@@ -1,9 +1,5 @@
-﻿using JPopadak.CoreMatchers.Matchers;
-using JPopadak.StandardMatchers.Matchers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
@@ -11,6 +7,22 @@ namespace JPopadak.StandardMatchers.Matchers
 {
     public static class Matchers
     {
+        /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given matcher.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches the dictionary's size against the given size.
+        /// </summary>
+        public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(int size)
+        {
+            return new IsDictionaryWithSize<TKey, TValue>(new IsEqual<int>(size));
+        }
+
         /// <summary>
         /// Creates a matcher for Iterables matching examined
         /// iterables that yield no items.
@@ -22,6 +34,31 @@ namespace JPopadak.StandardMatchers.Matchers
             return new IsEmptyEnumerable<T>();
         }
 
+        /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
+        /// an item count that satisifes the specified matcher.
+        /// For example:
+        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(EqualTo(2)))</code>
+        /// </summary>
+        /// <param name="sizeMatcher">A matcher for the number of items that should be yielded by an examined IEnumerable.</param>
+        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(IMatcher<int> sizeMatcher)
+        {
+            return new IsEnumerableWithSize<T>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
+        /// an item count that is equal to the specified size argument.
+        /// For example:
+        /// <code>Assert.That(new List&lt;string&gt; {"foo", "bar"}, EnumerableWithSize(2))</code>
+        /// </summary>
+        /// <param name="size">The number of items that should be yielded by an examined IEnumerable.</param>
+        public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(int size)
+        {
+            return new IsEnumerableWithSize<T>(EqualTo(size));
+        }
+
+        /// <summary>
         /// Creates a matcher for IDictionarys matching when the examined IDictionary contains at least one entry
         /// whose key satisfies the specified keyMatcher <b>and</b> whose value satisfies the specified valueMatcher.
         /// For example:
