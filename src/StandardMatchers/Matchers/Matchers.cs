@@ -8,6 +8,20 @@ namespace JPopadak.StandardMatchers.Matchers
     public static class Matchers
     {
         /// <summary>
+        /// Creates a matcher that matches arrays whose elements are satisfied by the specified matchers. Matches
+        /// positively only if the number of matchers specified is equal to the length of the examined array and
+        /// each matcher[i] is satisfied by array[i].
+        /// <p>
+        /// Exmaple: Assert.That(new int[]{1,2,3}, Is(Array(EqualTo(1), EqualTo(2), EqualTo(3))))
+        /// </p>
+        /// </summary>
+        /// <param name="matchers">The matchers that the elements of examined arrays should satisfy</param>
+        public static IsArray<T> Array<T>(IMatcher<T>[] matchers)
+        {
+            return new IsArray<T>(matchers);
+        }
+
+        /// <summary>
         /// Creates a matcher that matches the dictionary's size against the given matcher.
         /// </summary>
         public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
