@@ -68,7 +68,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         {
             description.AppendList(
                 "[",
-                " ",
+                ", ",
                 "]",
                 // ReSharper disable once CoVariantArrayConversion
                 _elementMatchers);
