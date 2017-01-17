@@ -118,7 +118,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
             IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"));
 
             // When
-            TestHelper.AssertDescription("[\"a\" \"b\"]", matcher);
+            TestHelper.AssertDescription("[\"a\", \"b\"]", matcher);
 
             // Then - No Exception
         }
