@@ -67,26 +67,11 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public override void Describe(IDescription description)
         {
             description.AppendList(
-                DescriptionStart(),
-                DescriptionSeparator(),
-                DescriptionEnd(),
+                "[",
+                " ",
+                "]",
                 // ReSharper disable once CoVariantArrayConversion
                 _elementMatchers);
-        }
-
-        protected string DescriptionStart()
-        {
-            return "[";
-        }
-
-        protected string DescriptionSeparator()
-        {
-            return " ";
-        }
-
-        protected string DescriptionEnd()
-        {
-            return "]";
         }
     }
 }
