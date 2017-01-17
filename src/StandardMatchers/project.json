@@ -1,14 +1,32 @@
 {
-  "dependencies": {
-    "CoreMatchers": {
-      "target": "project"
+    "authors": [ "Jim Popadak", "Bryan Herman" ],
+    "configurations": {
+        "Debug": {
+            "buildOptions": {
+                "debugType": "portable",
+                "define": [ "DEBUG", "TRACE" ],
+                "warningsAsErrors": true
+            }
+        },
+        "Release": {
+            "buildOptions": {
+                "debugType": "none",
+                "define": [ "RELEASE", "TRACE" ],
+                "warningsAsErrors": true,
+                "optimize": true
+            }
+        }
     },
-    "NETStandard.Library": "1.6.1"
-  },
-  "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
-    }
-  },
-  "version": "1.0.0-*"
+    "dependencies": {
+        "CoreMatchers": {
+            "target": "project"
+        },
+        "NETStandard.Library": "1.6.1"
+    },
+    "frameworks": {
+        "netstandard1.6": {
+            "imports": "dnxcore50"
+        }
+    },
+    "version": "1.0.0-*"
 }

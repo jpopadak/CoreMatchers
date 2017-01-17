@@ -1,23 +1,41 @@
 {
-  "dependencies": {
-    "CoreMatchers": {
-      "target": "project"
-    },
-    "dotnet-test-xunit": "2.2.0-preview2-build1029",
-    "xunit": "2.2.0-beta4-build3444",
-    "NETStandard.Library": "1.6.1"
-  },
-  "frameworks": {
-    "netcoreapp1.0": {
-      "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.1"
+    "authors": [ "Jim Popadak", "Bryan Herman" ],
+    "configurations": {
+        "Debug": {
+            "buildOptions": {
+                "debugType": "portable",
+                "define": [ "DEBUG", "TRACE" ],
+                "warningsAsErrors": true
+            }
+        },
+        "Release": {
+            "buildOptions": {
+                "debugType": "none",
+                "define": [ "RELEASE", "TRACE" ],
+                "warningsAsErrors": true,
+                "optimize": true
+            }
         }
-      },
-      "imports": "dnxcore50"
-    }
-  },
-  "testRunner": "xunit",
-  "version": "1.0.0-*"
+    },
+    "dependencies": {
+        "CoreMatchers": {
+            "target": "project"
+        },
+        "dotnet-test-xunit": "2.2.0-preview2-build1029",
+        "xunit": "2.2.0-beta4-build3444",
+        "NETStandard.Library": "1.6.1"
+    },
+    "frameworks": {
+        "netcoreapp1.0": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "type": "platform",
+                    "version": "1.0.1"
+                }
+            },
+            "imports": "dnxcore50"
+        }
+    },
+    "testRunner": "xunit",
+    "version": "1.0.0-*"
 }
