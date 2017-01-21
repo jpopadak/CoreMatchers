@@ -13,7 +13,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void NullValue_ArrayEqualTo_IsNullSafe()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
 
             // When
             TestHelper.AssertNullSafe(matcher);
@@ -25,7 +25,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void UnknownTypeValue_ArrayEqualTo_IsTypeSafe()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
 
             // When
             TestHelper.AssertUnknownTypeSafe(matcher);
@@ -37,7 +37,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void ExactValuesAsMatcherValues_ArrayEqualTo_ReturnsTrue()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"));
             string[] values = {"a", "b", "c"};
 
             // When
@@ -50,7 +50,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void DifferentSecondEqualToValues_ArrayEqualTo_ReturnsFalse()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"));
             string[] values = {"a", "c", "c"};
 
             // When
@@ -63,7 +63,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void SmallerSizedValueArray_ArrayEqualTo_ReturnsFalse()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"));
             string[] values = {"a", "b"};
 
             // When
@@ -76,7 +76,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void LargerSizedValueArray_ArrayEqualTo_ReturnsFalse()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"));
             string[] values = {"a", "b", "c", "d"};
 
             // When
@@ -89,7 +89,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void SmallerSizedMatcherArray_ArrayEqualTo_ReturnsFalse()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"));
             string[] values = {"a", "b", "c"};
 
             // When
@@ -102,7 +102,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void LargerSizedMatcherArray_ArrayEqualTo_ReturnsFalse()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"), EqualTo("c"), EqualTo("d"));
             string[] values = {"a", "b", "c"};
 
             // When
@@ -115,7 +115,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void ArrayEqualToAEqualToB_ArrayEqualTo_HasReadableDescription()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"));
 
             // When
             TestHelper.AssertDescription("[\"a\", \"b\"]", matcher);
@@ -127,7 +127,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public void ArrayEqualToAEqualToB_ArrayEqualTo_HasReadableMismatchDescription()
         {
             // Given
-            IMatcher<string[]> matcher = new IsArray<string>(EqualTo("a"), EqualTo("b"));
+            IMatcher<string[]> matcher = Array(EqualTo("a"), EqualTo("b"));
             string[] actual = {"a", "c"};
 
             // When
