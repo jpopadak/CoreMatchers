@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
+using JPopadak.StandardMatchers.Matchers.Text;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.StandardMatchers.Matchers
@@ -19,6 +20,24 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IsArray<T> Array<T>(params IMatcher<T>[] matchers)
         {
             return new IsArray<T>(matchers);
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the exsamined string contains zero or
+        /// more whitespace characters and nothing else.
+        /// </summary>
+        public static IMatcher<string> BlankString()
+        {
+            return new IsBlankString();
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the exsamined string contains zero or
+        /// more whitespace characters or is a null value.
+        /// </summary>
+        public static IMatcher<string> BlankOrNullString()
+        {
+            return new AnyOf<string>(new IsNull<string>(), new IsBlankString());
         }
 
         /// <summary>
