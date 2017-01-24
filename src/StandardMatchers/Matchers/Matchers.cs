@@ -23,7 +23,7 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
-        /// Creates a string matcher that matches when the exsamined string contains zero or
+        /// Creates a string matcher that matches when the examined string contains zero or
         /// more whitespace characters and nothing else.
         /// </summary>
         public static IMatcher<string> BlankString()
@@ -32,7 +32,7 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
-        /// Creates a string matcher that matches when the exsamined string contains zero or
+        /// Creates a string matcher that matches when the examined string contains zero or
         /// more whitespace characters or is a null value.
         /// </summary>
         public static IMatcher<string> BlankOrNullString()
