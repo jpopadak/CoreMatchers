@@ -17,9 +17,26 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </p>
         /// </summary>
         /// <param name="matchers">The matchers that the elements of examined arrays should satisfy</param>
-        public static IsArray<T> Array<T>(params IMatcher<T>[] matchers)
+        public static IMatcher<T[]> Array<T>(params IMatcher<T>[] matchers)
         {
             return new IsArray<T>(matchers);
+        }
+
+        /// <summary>
+        /// Creates a matcher for arrays that matches when the length of the array satisfies the specified matcher.
+        /// </summary>
+        /// <param name="sizeMatcher">A matcher for the length of an examined array</param>
+        public static IMatcher<T[]> ArrayWithSize<T>(IMatcher<int> sizeMatcher)
+        {
+            return new IsArrayWithSize<T>(sizeMatcher);
+        }
+
+        /// <summary>
+        /// Creates a matcher for arrays that matches when the length of the array satisfies the specified matcher.
+        /// </summary>
+        public static IMatcher<T[]> ArrayWithSize<T>(int size)
+        {
+            return new IsArrayWithSize<T>(new IsEqual<int>(size));
         }
 
         /// <summary>
@@ -68,6 +85,14 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher for arrays that matches when the length of the array is zero.
+        /// </summary>
+        public static IMatcher<T[]> EmptyArray<T>()
+        {
+            return new DescribedAs<T[]>("an empty array", new IsArrayWithSize<T>(new IsEqual<int>(0)));
+        }
+
+        /// <summary>
         /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
         /// an item count that satisifes the specified matcher.
         /// For example:
@@ -104,7 +129,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// <param name="valueMatcher">
         ///     The value matcher that, in combination with the keyMatcher, must be satisfied by at least one entry.
         /// </param>
-        public static Matcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(IMatcher<TKey> keyMatcher, IMatcher<TValue> valueMatcher)
+        public static IMatcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(IMatcher<TKey> keyMatcher, IMatcher<TValue> valueMatcher)
         {
             return new IsDictionaryContaining<TKey, TValue>(keyMatcher, valueMatcher);
         }
@@ -118,7 +143,7 @@ namespace JPopadak.StandardMatchers.Matchers
         ///
         /// <param name="key">The key that, in combination with the value, must describe at least one entry.</param>
         /// <param name="value">The value that, in combination with the key, must describe at least one entry.</param>
-        public static Matcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(TKey key, TValue value)
+        public static IMatcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(TKey key, TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(EqualTo(key), EqualTo(value));
         }
@@ -129,7 +154,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </summary>
         ///
         /// <param name="keyMatcher">The matcher that must be satisfied by at least one key.</param>
-        public static Matcher<IDictionary<TKey, TValue>> HasKey<TKey, TValue>(IMatcher<TKey> keyMatcher)
+        public static IMatcher<IDictionary<TKey, TValue>> HasKey<TKey, TValue>(IMatcher<TKey> keyMatcher)
         {
             return new IsDictionaryContaining<TKey, TValue>(keyMatcher, Anything<TValue>());
         }
@@ -140,7 +165,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </summary>
         ///
         /// <param name="key">The key that satisfying IDictionarys must contain</param>
-        public static Matcher<IDictionary<TKey, TValue>> HasKey<TKey, TValue>(TKey key)
+        public static IMatcher<IDictionary<TKey, TValue>> HasKey<TKey, TValue>(TKey key)
         {
             return new IsDictionaryContaining<TKey, TValue>(EqualTo(key), Anything<TValue>());
         }
@@ -151,7 +176,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </summary>
         ///
         /// <param name="valueMatcher">The matcher that must be satisfied by at least one value.</param>
-        public static Matcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(IMatcher<TValue> valueMatcher)
+        public static IMatcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(IMatcher<TValue> valueMatcher)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), valueMatcher);
         }
@@ -162,7 +187,7 @@ namespace JPopadak.StandardMatchers.Matchers
         /// </summary>
         ///
         /// <param name="value">The key that satisfying IDictionarys must contain</param>
-        public static Matcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
+        public static IMatcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), EqualTo(value));
         }

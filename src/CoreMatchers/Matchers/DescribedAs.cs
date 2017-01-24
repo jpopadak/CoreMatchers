@@ -11,7 +11,7 @@ namespace JPopadak.CoreMatchers.Matchers
         private readonly IMatcher<T> _matcher;
         private readonly object[] _args;
 
-        public DescribedAs(string descriptionTemplate, IMatcher<T> matcher, object[] values)
+        public DescribedAs(string descriptionTemplate, IMatcher<T> matcher, params object[] values)
         {
             _descriptionTemplate = descriptionTemplate;
             _matcher = matcher;
