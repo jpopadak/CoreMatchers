@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
+using JPopadak.StandardMatchers.Matchers.Number;
 using JPopadak.StandardMatchers.Matchers.Text;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
@@ -190,6 +191,14 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), EqualTo(value));
+        }
+
+        /// <summary>
+        /// Creates a double matcher that matches when the examined double is not a number.
+        /// </summary>
+        public static IMatcher<double> NotANumber()
+        {
+            return new IsNaN();
         }
     }
 }
