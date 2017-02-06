@@ -58,6 +58,26 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a string matcher that matches when the examined string contains (ordinally) all the
+        /// specified substrings, considering the order of their appearance.
+        /// </summary>
+        public static IMatcher<string> ContainsStringsInOrder(params string[] substrings)
+        {
+            return new StringContainsInOrder(substrings);
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the examined string contains (ordinally or using the
+        /// current culture) all the specified substrings, considering the order of their appearance.
+        /// </summary>
+        /// <param name="useCurrentCulture">If true, use the current culture to compare each substring.</param>
+        /// <param name="substrings">Strings to find in order</param>
+        public static IMatcher<string> ContainsStringsInOrder(bool useCurrentCulture, params string[] substrings)
+        {
+            return new StringContainsInOrder(useCurrentCulture, substrings);
+        }
+
+        /// <summary>
         /// Creates a matcher that matches the dictionary's size against the given matcher.
         /// </summary>
         public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
@@ -166,7 +186,8 @@ namespace JPopadak.StandardMatchers.Matchers
         /// <param name="valueMatcher">
         ///     The value matcher that, in combination with the keyMatcher, must be satisfied by at least one entry.
         /// </param>
-        public static IMatcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(IMatcher<TKey> keyMatcher, IMatcher<TValue> valueMatcher)
+        public static IMatcher<IDictionary<TKey, TValue>> HasEntry<TKey, TValue>(IMatcher<TKey> keyMatcher,
+            IMatcher<TValue> valueMatcher)
         {
             return new IsDictionaryContaining<TKey, TValue>(keyMatcher, valueMatcher);
         }
