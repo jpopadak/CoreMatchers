@@ -126,7 +126,8 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
-        /// Creates a string matcher that matches when the examined string is equal ignoring case ordinally.
+        /// Creates a string matcher that matches when the examined string is equal ignoring case either ordinally
+        /// or using the current culture.
         /// </summary>
         /// <param name="expected">Expected string</param>
         /// <param name="includeCurrentCulture">If true, the string will be compared using the current culture (international languages).</param>
