@@ -155,6 +155,17 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a string / IEnumerable&lt;char&gt; matcher that matches when the examined string is equal to
+        /// the specified expectedString, when whitespace differences are (mostly) ignored.  To be
+        /// exact, the following whitespace rules are applied:
+        /// (1) all leading and trailing whitespace of both the expectedString and the examined string are ignored
+        /// (2) any remaining whitespace, appearing within either string, is collapsed to a single space before comparison
+        /// </summary>
+        public static IMatcher<IEnumerable<char>> EqualToCompressingWhiteSpace(IEnumerable<char> value)
+        {
+            return new IsEqualCompressingWhiteSpace(value);
+        }
+
         /// Creates a string matcher that matches when the examined string is equal ignoring case ordinally.
         /// </summary>
         /// <param name="expected">Expected string</param>
