@@ -93,6 +93,23 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a string matcher that matches when the examined string has zero length
+        /// or the string is null.
+        /// </summary>
+        public static IMatcher<string> EmptyOrNullString()
+        {
+            return new AnyOf<string>(NullValue<string>(), EmptyString());
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the examined string has zero length.
+        /// </summary>
+        public static IMatcher<string> EmptyString()
+        {
+            return new IsEmptyString();
+        }
+
+        /// <summary>
         /// Creates a matcher for IEnumerables that matches when a single pass over the examined Enumerable yields
         /// an item count that satisifes the specified matcher.
         /// For example:
@@ -210,6 +227,23 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<IDictionary<TKey, TValue>> HasValue<TKey, TValue>(TValue value)
         {
             return new IsDictionaryContaining<TKey, TValue>(Anything<TKey>(), EqualTo(value));
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the examined string has zero length
+        /// or the string is null.
+        /// </summary>
+        public static IMatcher<string> IsEmptyOrNullString()
+        {
+            return new AnyOf<string>(NullValue<string>(), EmptyString());
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the examined string has zero length.
+        /// </summary>
+        public static IMatcher<string> IsEmptyString()
+        {
+            return new IsEmptyString();
         }
     }
 }
