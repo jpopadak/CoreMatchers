@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
+using JPopadak.StandardMatchers.Matchers.Number;
 using JPopadak.StandardMatchers.Matchers.Text;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
@@ -276,6 +277,14 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<string> IsEmptyString()
         {
             return new IsEmptyString();
+        }
+
+        /// <summary>
+        /// Creates a double matcher that matches when the examined double is not a number.
+        /// </summary>
+        public static IMatcher<double> NotANumber()
+        {
+            return new IsNaN();
         }
     }
 }
