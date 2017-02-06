@@ -145,6 +145,25 @@ namespace JPopadak.StandardMatchers.Matchers
             return new IsEqualCompressingWhiteSpace(value);
         }
 
+        /// Creates a string matcher that matches when the examined string is equal ignoring case ordinally.
+        /// </summary>
+        /// <param name="expected">Expected string</param>
+        public static IMatcher<string> EqualToIgnoringCase(string expected)
+        {
+            return new IsEqualIgnoringCase(expected);
+        }
+
+        /// <summary>
+        /// Creates a string matcher that matches when the examined string is equal ignoring case either ordinally
+        /// or using the current culture.
+        /// </summary>
+        /// <param name="expected">Expected string</param>
+        /// <param name="includeCurrentCulture">If true, the string will be compared using the current culture (international languages).</param>
+        public static IMatcher<string> EqualToIgnoringCase(bool includeCurrentCulture, string expected)
+        {
+            return new IsEqualIgnoringCase(expected, includeCurrentCulture);
+        }
+
         /// <summary>
         /// Creates a matcher for IDictionarys matching when the examined IDictionary contains at least one entry
         /// whose key satisfies the specified keyMatcher <b>and</b> whose value satisfies the specified valueMatcher.
