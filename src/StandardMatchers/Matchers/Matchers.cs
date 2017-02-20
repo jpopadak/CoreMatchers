@@ -1,5 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
 using JPopadak.StandardMatchers.Matchers.Number;
@@ -57,6 +58,27 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<string> BlankOrNullString()
         {
             return new AnyOf<string>(new IsNull<string>(), new IsBlankString());
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that match when a single pass over the
+        /// examined IEnumerable yields a single item that satisfies the specified matcher.
+        /// For a positive match, the examined iterable must only yield one item.
+        /// </summary>
+        public static IMatcher<IEnumerable<T>> Contains<T>(IMatcher<T> matcher)
+        {
+            return new IsEnumerableContainingInOrder<T>(new List<IMatcher<T>> { matcher });
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that match when a single pass over the
+        /// examined IEnumerable yields a series of items, each logically equal to the
+        /// corresponding item in the specified items.  For a positive match, the examined iterable
+        /// must be of the same length as the number of specified items.
+        /// </summary>
+        public static IMatcher<IEnumerable<T>> ContainsInOrder<T>(params T[] items)
+        {
+            return new IsEnumerableContainingInOrder<T>(EqualToArray(items));
         }
 
         /// <summary>
@@ -153,6 +175,14 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<IEnumerable<T>> EnumerableWithSize<T>(int size)
         {
             return new IsEnumerableWithSize<T>(EqualTo(size));
+        }
+
+        /// <summary>
+        /// Creates an array of EqualTo matchers for each item in items.
+        /// </summary>
+        public static IEnumerable<IMatcher<T>> EqualToArray<T>(params T[] items)
+        {
+            return items.Select(EqualTo);
         }
 
         /// <summary>
