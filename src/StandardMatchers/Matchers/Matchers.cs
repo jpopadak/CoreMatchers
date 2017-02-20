@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using JPopadak.CoreMatchers.Matchers;
 using JPopadak.StandardMatchers.Matchers.Collections;
 using JPopadak.StandardMatchers.Matchers.Number;
@@ -166,6 +167,7 @@ namespace JPopadak.StandardMatchers.Matchers
             return new IsEqualCompressingWhiteSpace(value);
         }
 
+        /// <summary>
         /// Creates a string matcher that matches when the examined string is equal ignoring case ordinally.
         /// </summary>
         /// <param name="expected">Expected string</param>

@@ -5,7 +5,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class StringRegularExpressionFacts
     {
-        private const string PATTERN = "^[0-9]+$";
+        private const string Pattern = "^[0-9]+$";
 
         [Fact]
         public void Number12_MatchesRegex_ReturnsTrue()
@@ -35,7 +35,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public void ValidInput_MatchesRegex_DescriptionIncludesRegexUsed()
         {
             // When
-            TestHelper.AssertDescription("a string matching the pattern <" + PATTERN + ">", getRegexMatcher());
+            TestHelper.AssertDescription("a string matching the pattern <" + Pattern + ">", getRegexMatcher());
 
             // Then - No Exception
         }
@@ -54,7 +54,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         private IMatcher<string> getRegexMatcher()
         {
-            return MatchesRegex(PATTERN);
+            return MatchesRegex(Pattern);
         }
     }
 }

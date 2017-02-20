@@ -22,7 +22,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public StringRegularExpression(Regex regex)
         {
-            Contract.NotNull(regex);
+            regex.NotNull();
             _regex = regex;
         }
 
