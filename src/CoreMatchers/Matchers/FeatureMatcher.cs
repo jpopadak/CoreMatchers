@@ -6,10 +6,10 @@ namespace JPopadak.CoreMatchers.Matchers
     public abstract class FeatureMatcher<TSafe, TSub> : TypeSafeDiagnosingMatcher<TSafe>
     {
         private readonly IMatcher<TSub> _subMatcher;
-        private readonly String _featureDescription;
+        private readonly string _featureDescription;
         private readonly String _featureName;
 
-        protected FeatureMatcher(IMatcher<TSub> subMatcher, String featureDescription, String featureName)
+        protected FeatureMatcher(IMatcher<TSub> subMatcher, string featureDescription, string featureName)
         {
             _subMatcher = subMatcher;
             _featureDescription = featureDescription;
