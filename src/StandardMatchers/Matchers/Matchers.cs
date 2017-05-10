@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -270,6 +271,28 @@ namespace JPopadak.StandardMatchers.Matchers
         public static IMatcher<IDictionary<TKey, TValue>> HasKey<TKey, TValue>(TKey key)
         {
             return new IsDictionaryContaining<TKey, TValue>(EqualTo(key), Anything<TValue>());
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches any examined object when passed to
+        /// <see cref="Convert.ToString()">Convert.ToString()</see> returns a value that satisfies the
+        /// specified matcher. If the value is <code>null</code>, the
+        /// resulting match will be made against the string value "null".
+        /// </summary>
+        public static IMatcher<string> HasToString(IMatcher<string> matcher)
+        {
+            return new HasToString(matcher);
+        }
+
+        /// <summary>
+        /// Creates an EqualTo matcher that matches any examined object when passed to
+        /// <see cref="Convert.ToString()">Convert.ToString()</see> returns a value that satisfies the
+        /// specified matcher. If the value is <code>null</code>, the
+        /// resulting match will be made against the string value "null".
+        /// </summary>
+        public static IMatcher<string> HasToString(string value)
+        {
+            return new HasToString(EqualTo(value));
         }
 
         /// <summary>
