@@ -7,6 +7,8 @@ namespace JPopadak.CoreMatchers.Descriptions
         IDescription AppendText(string text);
 
         IDescription AppendList(string before, string separator, string after, params IDescribable[] args);
+
+        IDescription AppendList(string before, string separator, string after, IEnumerable<IDescribable> args);
         
         IDescription AppendValueList<T>(string start, string separator, string end, IEnumerable<T> values);
 

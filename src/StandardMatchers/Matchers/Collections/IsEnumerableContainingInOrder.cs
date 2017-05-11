@@ -34,10 +34,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         public override void Describe(IDescription description)
         {
             description.AppendText("IEnumerable containing ");
-
-            // Disable this because we know all of the IMatcher's are IDescribable
-            // ReSharper disable once CoVariantArrayConversion
-            description.AppendList("[", ", ", "]", _matchers.ToArray());
+            description.AppendList("[", ", ", "]", _matchers);
         }
 
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
