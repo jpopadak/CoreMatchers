@@ -103,6 +103,32 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates an order agnostic matcher for IEnumerables that matches when a single pass over
+        /// the examined IEnumerable yields a series of items, each satisfying one matcher anywhere
+        /// in the specified collection of matchers.  For a positive match, the examined enumerable
+        /// must be of the same length as the specified collection of matchers.
+        /// </summary>
+        /// <param name="itemMatchers">a list of matchers, each of which must be satisfied
+        /// by an item provided by an examined</param>
+        public static IMatcher<IEnumerable<T>> ContainsInAnyOrder<T>(params IMatcher<T>[] itemMatchers)
+        {
+            return new IsEnumerableContainingInAnyOrder<T>(itemMatchers);
+        }
+
+        /// <summary>
+        /// Creates an order agnostic matcher for IEnumerables that matches when a single pass over
+        /// the examined IEnumerable yields a series of items, each satisfying one matcher anywhere
+        /// in the specified collection of matchers.  For a positive match, the examined enumerable
+        /// must be of the same length as the specified collection of matchers.
+        /// </summary>
+        /// <param name="items">the items that must equal the items provided by an
+        /// examined EqualTo for each item in any order</param>
+        public static IMatcher<IEnumerable<T>> ContainsInAnyOrder<T>(params T[] items)
+        {
+            return new IsEnumerableContainingInAnyOrder<T>(items.Select(EqualTo));
+        }
+
+        /// <summary>
         /// Creates a matcher that matches the dictionary's size against the given matcher.
         /// </summary>
         public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
