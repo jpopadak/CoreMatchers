@@ -31,44 +31,41 @@ namespace JPopadak.CoreMatchers.Descriptions
 
         public IDescription AppendValue(object value)
         {
-            if (value == null)
+            switch (value)
             {
-                AppendText("null");
+                case null:
+                    AppendText("null");
+                    break;
+                case string _:
+                    EscapeValue((string)value);
+                    break;
+                case char _:
+                    Append('"');
+                    EscapeValue((char)value);
+                    Append('"');
+                    break;
+                case short _:
+                    Append("<");
+                    Append(Convert.ToString(value));
+                    Append("s>");
+                    break;
+                case long _:
+                    Append("<");
+                    Append(Convert.ToString(value));
+                    Append("L>");
+                    break;
+                case float _:
+                    Append("<");
+                    Append(Convert.ToString(value));
+                    Append("F>");
+                    break;
+                default:
+                    AppendText("<");
+                    AppendText(value.ToString());
+                    AppendText(">");
+                    break;
             }
-            else if (value is string)
-            {
-                EscapeValue((string)value);
-            }
-            else if (value is char)
-            {
-                Append('"');
-                EscapeValue((char)value);
-                Append('"');
-            }
-            else if (value is short)
-            {
-                Append("<");
-                Append(Convert.ToString(value));
-                Append("s>");
-            }
-            else if (value is long)
-            {
-                Append("<");
-                Append(Convert.ToString(value));
-                Append("L>");
-            }
-            else if (value is float)
-            {
-                Append("<");
-                Append(Convert.ToString(value));
-                Append("F>");
-            }
-            else
-            {
-                AppendText("<");
-                AppendText(value.ToString());
-                AppendText(">");
-            }
+
             return this;
         }
 

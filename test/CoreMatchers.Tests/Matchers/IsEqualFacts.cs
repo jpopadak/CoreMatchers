@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;
 
 namespace JPopadak.CoreMatchers.Matchers

@@ -7,7 +7,7 @@ namespace JPopadak.CoreMatchers.Matchers
     {
         private readonly IMatcher<TSub> _subMatcher;
         private readonly string _featureDescription;
-        private readonly String _featureName;
+        private readonly string _featureName;
 
         protected FeatureMatcher(IMatcher<TSub> subMatcher, string featureDescription, string featureName)
         {

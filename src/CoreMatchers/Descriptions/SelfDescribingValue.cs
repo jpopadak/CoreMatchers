@@ -2,7 +2,7 @@
 {
     public class SelfDescribingValue<T> : IDescribable
     {
-        private T value;
+        private readonly T value;
 
         public SelfDescribingValue(T value)
         {

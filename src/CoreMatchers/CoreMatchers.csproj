@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>An implementation of assertion matchers for testing.</Description>
+    <Authors>Jim Popadak;Bryan Herman</Authors>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>CoreMatchers</AssemblyName>
+    <PackageId>CoreMatchers</PackageId>
+    <PackageTags>.NET;DNX;Core;Matchers;Standard;NetStandard;.NET Standard;Test;Hamcrest</PackageTags>
+    <PackageReleaseNotes>Finished all xUnit tests</PackageReleaseNotes>
+    <PackageLicenseUrl>https://api.github.com/licenses/bsd-3-clause</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/jpopadak/CoreMatchers</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+</Project>

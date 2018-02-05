@@ -13,12 +13,7 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
 
         public IsEnumerableContainingInOrder(IEnumerable<IMatcher<T>> matchers)
         {
-            if (matchers == null)
-            {
-                throw new ArgumentNullException(nameof(matchers), "Must specify matchers");
-            }
-
-            _matchers = matchers;
+            _matchers = matchers ?? throw new ArgumentNullException(nameof(matchers), "Must specify matchers");
         }
 
         protected override bool MatchesSafely(IEnumerable<T> items, IDescription mismatchDescription)
@@ -56,14 +51,11 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
 
             public bool Matches(T item)
             {
-                if (_matchers.Count < _nextMatchIndex)
-                {
-                    _description.AppendText("not matched: ");
-                    _description.AppendValue(item);
-                    return false;
-                }
+                if (_matchers.Count >= _nextMatchIndex) return IsMatched(item);
+                _description.AppendText("not matched: ");
+                _description.AppendValue(item);
+                return false;
 
-                return IsMatched(item);
             }
 
             private bool IsMatched(T item)
@@ -80,13 +72,10 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
 
             public bool IsFinished()
             {
-                if (_nextMatchIndex < _matchers.Count)
-                {
-                    _description.AppendText("no item was ");
-                    _description.AppendDescribable(_matchers[_nextMatchIndex]);
-                    return false;
-                }
-                return true;
+                if (_nextMatchIndex >= _matchers.Count) return true;
+                _description.AppendText("no item was ");
+                _description.AppendDescribable(_matchers[_nextMatchIndex]);
+                return false;
             }
 
             private void DescribeMismatch(IMatcher<T> matcher, T item)

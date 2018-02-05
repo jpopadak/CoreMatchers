@@ -4,7 +4,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public abstract class ShortcutCombinationMatcher<T> : Matcher<T>
     {
-        private readonly IMatcher<T>[] _matchers;
+        private readonly IDescribable[] _matchers;
 
         protected ShortcutCombinationMatcher(params IMatcher<T>[] matchers)
         {
@@ -13,8 +13,9 @@ namespace JPopadak.CoreMatchers.Matchers
 
         protected bool matches(object value, bool shortcut)
         {
-            foreach (IMatcher<T> matcher in _matchers)
+            foreach (var describable in _matchers)
             {
+                var matcher = (IMatcher<T>) describable;
                 if (matcher.Matches(value) == shortcut)
                 {
                     return shortcut;

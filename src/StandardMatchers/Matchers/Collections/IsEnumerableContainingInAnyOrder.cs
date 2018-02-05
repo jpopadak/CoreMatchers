@@ -44,18 +44,13 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
             }
 
             public bool Matches(TM item) {
-                if (_matchers.Count == 0)
-                {
-                    _description.AppendText("no match for: ");
-                    _description.AppendValue(item);
-
-                    return false;
-                }
-
-                return IsMatched(item);
+                if (_matchers.Count != 0) return IsMatched(item);
+                _description.AppendText("no match for: ");
+                _description.AppendValue(item);
+                return false;
             }
 
-            public bool IsFinished(List<TM> items) {
+            public bool IsFinished(IEnumerable<TM> items) {
                 if (_matchers.Count == 0)
                 {
                     return true;
@@ -65,16 +60,14 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
                 _description.AppendList("", ", ", "", _matchers);
                 _description.AppendText(" in ");
                 _description.AppendValueList("[", ", ", "]", items);
-
                 return false;
             }
 
             private bool IsMatched(TM item) {
-                foreach (IMatcher<TM> matcher in _matchers) {
-                    if (matcher.Matches(item)) {
-                        _matchers.Remove(matcher);
-                        return true;
-                    }
+                foreach (var matcher in _matchers) {
+                    if (!matcher.Matches(item)) continue;
+                    _matchers.Remove(matcher);
+                    return true;
                 }
                 _description.AppendText("not matched: ");
                 _description.AppendValue(item);
