@@ -27,7 +27,9 @@ after_build:
 #- dotnet publish "src\CoreMatchers" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts\CoreMatchers
 
 test_script:
+- dotnet resolve "test\CoreMatchers.Tests" -c %CONFIGURATION%
 - dotnet xunit "test\CoreMatchers.Tests" -c %CONFIGURATION%
+- dotnet resolve "test\CoreMatchers.Tests" -c %CONFIGURATION%
 - dotnet xunit "test\StandardMatchers.Tests" -c %CONFIGURATION%
 
 artifacts:
