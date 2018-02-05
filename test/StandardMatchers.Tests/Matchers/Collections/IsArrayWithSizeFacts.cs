@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using JPopadak.CoreMatchers;
+﻿using JPopadak.CoreMatchers;
 using JPopadak.CoreMatchers.Matchers;
 using Xunit;
 using static JPopadak.CoreMatchers.Matchers.Matchers;

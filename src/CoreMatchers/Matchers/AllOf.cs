@@ -6,7 +6,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class AllOf<T> : DiagnosingMatcher<T>
     {
-        private readonly IMatcher<T>[] _matchers;
+        private readonly IDescribable[] _matchers;
 
         public AllOf(params IMatcher<T>[] matchers)
         {
@@ -26,14 +26,14 @@ namespace JPopadak.CoreMatchers.Matchers
 
         protected override bool Matches(object actual, IDescription description)
         {
-            foreach (IMatcher<T> matcher in _matchers)
+            foreach (var describable in _matchers)
             {
-                if (!matcher.Matches(actual))
-                {
-                    description.AppendDescribable(matcher).AppendText(" ");
-                    matcher.DescribeMismatch(actual, description);
-                    return false;
-                }
+                var matcher = (IMatcher<T>) describable;
+                if (matcher.Matches(actual)) continue;
+                
+                description.AppendDescribable(matcher).AppendText(" ");
+                matcher.DescribeMismatch(actual, description);
+                return false;
             }
             return true;
         }

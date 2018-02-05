@@ -40,7 +40,7 @@ namespace JPopadak.CoreMatchers.Matchers
             return actual.Equals(expected);
         }
 
-        private static bool checkArraysEqual(Array actual, Array expected)
+        private static bool checkArraysEqual(IEnumerable actual, IEnumerable expected)
         {
             // Use GetEnumerator() so it can do the work of iterating
             // over the ranks and lengths of a mutli-dim array

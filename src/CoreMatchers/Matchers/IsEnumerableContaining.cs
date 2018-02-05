@@ -34,13 +34,14 @@ namespace JPopadak.CoreMatchers.Matchers
 
         protected override bool MatchesSafely(IEnumerable<T> actual, IDescription description)
         {
-            if (isEmpty(actual))
+            var enumerable = actual.ToList();
+            if (isEmpty(enumerable))
             {
                 description.AppendText("was empty");
                 return false;
             }
 
-            if (doesOneMatch(actual))
+            if (doesOneMatch(enumerable))
             {
                 return true;
             }
@@ -48,7 +49,7 @@ namespace JPopadak.CoreMatchers.Matchers
             description.AppendText("mismatches were: [");
 
             bool isPastFirst = false;
-            foreach (T item in actual)
+            foreach (T item in enumerable)
             {
                 if (isPastFirst)
                 {

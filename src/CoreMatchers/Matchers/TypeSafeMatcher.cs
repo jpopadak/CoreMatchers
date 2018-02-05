@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
         public sealed override bool Matches(object actual)
         {
             // Cannot use 'as' here due to T not being constrained to Class types
-            if (actual == null || !(actual is T))
+            if (!(actual is T))
             {
                 return false;
             }

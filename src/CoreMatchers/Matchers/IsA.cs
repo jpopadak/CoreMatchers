@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using JPopadak.CoreMatchers.Descriptions;
 using JPopadak.CoreMatchers.Contracts;
 
@@ -11,7 +10,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public IsA(Type type)
         {
-            Contract.NotNull(type);
+            type.NotNull();
             _type = type;
         }
 

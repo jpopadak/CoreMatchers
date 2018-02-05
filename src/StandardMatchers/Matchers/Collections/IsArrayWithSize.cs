@@ -1,5 +1,4 @@
-﻿using System;
-using JPopadak.CoreMatchers.Matchers;
+﻿using JPopadak.CoreMatchers.Matchers;
 
 namespace JPopadak.StandardMatchers.Matchers.Collections
 {

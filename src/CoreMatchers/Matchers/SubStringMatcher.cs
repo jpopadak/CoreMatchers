@@ -15,8 +15,8 @@ namespace JPopadak.CoreMatchers.Matchers
             _ignoringCase = ignoringCase;
             _substring = substring;
 
-            Contract.NotNull(_relationship);
-            Contract.NotNull(_substring);
+            _relationship.NotNull();
+            _substring.NotNull();
         }
 
         protected override bool MatchesSafely(string actual)

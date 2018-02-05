@@ -8,11 +8,6 @@ namespace JPopadak.StandardMatchers.Matchers.Text
     {
         private static readonly Regex RegexWhitespace = new Regex(@"^\s*$", RegexOptions.Multiline);
 
-        public IsBlankString()
-        {
-            // Do Nothing
-        }
-
         public override void Describe(IDescription description)
         {
             description.AppendText("a blank string");

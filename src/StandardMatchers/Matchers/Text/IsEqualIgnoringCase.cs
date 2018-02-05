@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using JPopadak.CoreMatchers.Descriptions;
 using JPopadak.CoreMatchers.Matchers;
 
@@ -10,19 +9,9 @@ namespace JPopadak.StandardMatchers.Matchers.Text
         private readonly string _value;
         private readonly StringComparison _comparison;
 
-        public IsEqualIgnoringCase(string value)
-            : this(value, false)
+        public IsEqualIgnoringCase(string value, bool withCurrentCulture = false)
         {
-            // Do Nothing
-        }
-
-        public IsEqualIgnoringCase(string value, bool withCurrentCulture)
-        {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value), "Non-null value required");
-            }
-            _value = value;
+            _value = value ?? throw new ArgumentNullException(nameof(value), "Non-null value required");
             _comparison = withCurrentCulture
                 ? StringComparison.CurrentCultureIgnoreCase
                 : StringComparison.OrdinalIgnoreCase;

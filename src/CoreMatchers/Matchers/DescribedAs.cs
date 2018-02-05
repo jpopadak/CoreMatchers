@@ -6,7 +6,7 @@ namespace JPopadak.CoreMatchers.Matchers
 {
     public class DescribedAs<T> : Matcher<T>
     {
-        private readonly static Regex ARG_PATTERN = new Regex("{([0-9]+)}");
+        private static readonly Regex ArgPattern = new Regex("{([0-9]+)}");
         private readonly string _descriptionTemplate;
         private readonly IMatcher<T> _matcher;
         private readonly object[] _args;
@@ -27,7 +27,7 @@ namespace JPopadak.CoreMatchers.Matchers
 
         public override void Describe(IDescription description)
         {
-            MatchCollection matches = ARG_PATTERN.Matches(_descriptionTemplate);
+            MatchCollection matches = ArgPattern.Matches(_descriptionTemplate);
 
             int textStart = 0;
             foreach (Match match in matches)
@@ -60,7 +60,7 @@ namespace JPopadak.CoreMatchers.Matchers
         {
             GroupCollection groups = match.Groups;
             string argIndex = groups[1].Value;
-            return Int32.Parse(argIndex);
+            return int.Parse(argIndex);
         }
     }
 }

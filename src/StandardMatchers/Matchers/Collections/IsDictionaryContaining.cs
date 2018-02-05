@@ -49,13 +49,12 @@ namespace JPopadak.StandardMatchers.Matchers.Collections
         {
             foreach (TKey key in dictionary.Keys)
             {
-                if (_keyMatcher.Matches(key))
+                if (!_keyMatcher.Matches(key)) continue;
+                
+                TValue value = dictionary[key];
+                if (_valueMatcher.Matches(value))
                 {
-                    TValue value = dictionary[key];
-                    if (_valueMatcher.Matches(value))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
