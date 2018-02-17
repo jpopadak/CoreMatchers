@@ -384,11 +384,65 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified collection.
+        /// </summary>
+        public static IMatcher<T> IsIn<T>(ICollection<T> collection)
+        {
+            return new IsIn<T>(collection);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified collection.
+        /// </summary>
+        public static IMatcher<T> In<T>(ICollection<T> collection)
+        {
+            return new IsIn<T>(collection);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified array.
+        /// </summary>
+        public static IMatcher<T> IsIn<T>(params T[] elements)
+        {
+            return new IsIn<T>(elements);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified array.
+        /// </summary>
+        public static IMatcher<T> In<T>(params T[] elements)
+        {
+            return new IsIn<T>(elements);
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified array.
+        /// </summary>
+        public static IMatcher<T> IsOneOf<T>(params T[] elements)
+        {
+            return new IsIn<T>(elements);
+        }
+
+        /// <summary>
         /// Creates a double matcher that matches when the examined double is not a number.
         /// </summary>
         public static IMatcher<double> NotANumber()
         {
             return new IsNaN();
+        }
+
+        /// <summary>
+        /// Creates a matcher that matches when the examined object is found within the
+        /// specified array.
+        /// </summary>
+        public static IMatcher<T> OneOf<T>(params T[] elements)
+        {
+            return new IsIn<T>(elements);
         }
     }
 }
