@@ -128,6 +128,30 @@ namespace JPopadak.StandardMatchers.Matchers
         }
 
         /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the
+        /// examined IEnumerable yields a series of items, that contains items logically equal to the
+        /// corresponding item in the specified items, in the same relative order,
+        /// </summary>
+        /// <param name="items">The items that must be contained within items provided by an
+        /// examined IEnumerable in the same relative order</param>
+        public static IMatcher<IEnumerable<T>> ContainsInRelativeOrder<T>(params T[] items)
+        {
+            return new IsEnumerableContainingInRelativeOrder<T>(items.Select(EqualTo));
+        }
+
+        /// <summary>
+        /// Creates a matcher for IEnumerables that matches when a single pass over the
+        /// examined IEnumerable yields a series of items, that contains items logically equal to the
+        /// corresponding item in the specified items, in the same relative order,
+        /// </summary>
+        /// <param name="matchers">The matchers that must be satisfied by the items provided by an examined
+        /// IEnumerable in the same relative order</param>
+        public static IMatcher<IEnumerable<T>> ContainsInRelativeOrder<T>(params IMatcher<T>[] matchers)
+        {
+            return new IsEnumerableContainingInRelativeOrder<T>(matchers);
+        }
+
+        /// <summary>
         /// Creates a matcher that matches the dictionary's size against the given matcher.
         /// </summary>
         public static IMatcher<IDictionary<TKey, TValue>> DictionaryWithSize<TKey, TValue>(IMatcher<int> sizeMatcher)
