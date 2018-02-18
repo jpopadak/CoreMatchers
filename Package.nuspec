@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Package</id>
-    <version>1.0</version>
+    <version>1.1</version>
     <authors>Jim Popadak</authors>
     <owners>Jim Popadak</owners>
     <licenseUrl>https://opensource.org/licenses/BSD-3-Clause</licenseUrl>
