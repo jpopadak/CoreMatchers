@@ -20,8 +20,8 @@ build_script:
 - dotnet build "src\StandardMatchers" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
 
 after_build:
-- dotnet pack "src\CoreMatchers" -c %CONFIGURATION% --no-build -o artifacts
-- dotnet pack "src\StandardMatchers" -c %CONFIGURATION% --no-build -o artifacts
+- dotnet pack "src\CoreMatchers" -c %CONFIGURATION% --no-build /p:PackageVersion={version} -o artifacts
+- dotnet pack "src\StandardMatchers" -c %CONFIGURATION% --no-build /p:PackageVersion={version} -o artifacts
 
 # Dont need this yet because we are publishing a full app, only a library
 #- dotnet publish "src\CoreMatchers" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts\CoreMatchers
