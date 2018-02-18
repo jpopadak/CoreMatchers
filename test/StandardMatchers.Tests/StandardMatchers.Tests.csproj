@@ -5,6 +5,7 @@
     <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <AssemblyName>StandardMatchers.Tests</AssemblyName>
     <PackageId>StandardMatchers.Tests</PackageId>
+    <PackageVersion>0.0.1</PackageVersion>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
