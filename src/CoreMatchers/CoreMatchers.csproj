@@ -6,6 +6,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>CoreMatchers</AssemblyName>
     <PackageId>CoreMatchers</PackageId>
+    <PackageVersion>0.0.1</PackageVersion>
     <PackageTags>.NET;DNX;Core;Matchers;Standard;NetStandard;.NET Standard;Test;Hamcrest</PackageTags>
     <PackageReleaseNotes>Finished all xUnit tests</PackageReleaseNotes>
     <PackageLicenseUrl>https://api.github.com/licenses/bsd-3-clause</PackageLicenseUrl>
